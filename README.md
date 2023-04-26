@@ -1,4 +1,4 @@
-[![Continuous integration](https://github.com/benjaminmal/exchangeratehost-bundle/actions/workflows/ci.yaml/badge.svg?event=branch_protection_rule)](https://github.com/benjaminmal/exchangeratehost-bundle/actions/workflows/ci.yaml)
+[![Continuous integration](https://github.com/benjaminmal/exchangeratehost-bundle/actions/workflows/ci.yaml/badge.svg)](https://github.com/benjaminmal/exchangeratehost-bundle/actions/workflows/ci.yaml)
 # exchangerate.host bundle
 This bundle allows you to query the great [exchangerate.host](https://exchangerate.host) API with ease and in PHP. It supports [PSR-7](https://www.php-fig.org/psr/psr-7/), [PSR-17](https://www.php-fig.org/psr/psr-17/), [PSR-18](https://www.php-fig.org/psr/psr-18/) so you have full control of your application dependencies!
 
