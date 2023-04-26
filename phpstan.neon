@@ -1,0 +1,32 @@
+parameters:
+  level: max
+
+  paths:
+    - config
+    - src
+
+  ignoreErrors:
+    -
+      message: "#^ArrayObject\\<\\*NEVER\\*, \\*NEVER\\*\\> does not accept Benjaminmal\\\\ExchangeRateBundle\\\\Model\\\\Output\\\\.*\\.$#"
+      count: 3
+      path: src/Client/ExchangeRateClient.php
+
+    -
+      message: "#^Method Benjaminmal\\\\ExchangeRateBundle\\\\Client\\\\ExchangeRateClient\\:\\:.*\\(\\) return type with generic class ArrayObject does not specify its types\\: TKey, TValue$#"
+      count: 7
+      path: src/Client/ExchangeRateClient.php
+
+    -
+      message: "#^Parameter \\#1 \\$array of class ArrayObject constructor expects array\\<TKey of \\(int\\|string\\), TValue\\>\\|object, mixed given\\.$#"
+      count: 1
+      path: src/Client/ExchangeRateClient.php
+
+    -
+      message: "#^Method Benjaminmal\\\\ExchangeRateBundle\\\\ExchangeRateBundle\\:\\:loadExtension\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+      count: 1
+      path: src/ExchangeRateBundle.php
+
+    -
+      message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
+      count: 1
+      path: src/ExchangeRateBundle.php

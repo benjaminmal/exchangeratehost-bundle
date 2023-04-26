@@ -1,0 +1,24 @@
+exchangerate_host:
+    cache:
+        # Test default values
+
+when@test:
+    exchangerate_host:
+        cache:
+            # Set the cache pool service id. Optional. Set it to false if you don't want to use cache (not recommended).
+            pool: 'cache.app'
+
+            # Data cache expiration. Optional. Could be an integer (seconds) or a string (date used
+            # in DateTime::__construct(), e.g '+3days')
+            latest_rates_expiration: 'tomorrow 6am'
+            convert_currency_expiration: 'tomorrow 6am'
+            historical_rates_expiration: 'tomorrow 6am'
+            timeseries_rates_expiration: 'tomorrow 6am'
+            fluctuation_data_expiration: 'tomorrow 6am'
+            supported_currencies_expiration: 'tomorrow 6am'
+            eu_vat_rates_expiration: 'tomorrow 6am'
+
+when@test_with_no_cache:
+    exchangerate_host:
+        cache:
+            pool: false

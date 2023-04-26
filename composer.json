@@ -1,0 +1,69 @@
+{
+    "name": "benjaminmal/exchangeratehost-bundle",
+    "description": "ExchangeRate.host API bundle for Symfony",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Malgras",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "e-lodgy/coding-standard": "^1.1",
+        "psr/http-client": "^1.0",
+        "symfony/cache": "^6.2",
+        "symfony/config": "^6.2",
+        "symfony/dependency-injection": "^6.2",
+        "symfony/flex": "^2.2",
+        "symfony/framework-bundle": "^6.2",
+        "symfony/http-kernel": "^6.2",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/validator": "^6.2",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "nyholm/psr7": "^1.7",
+        "php-parallel-lint/php-var-dump-check": "^0.5.0",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpstan/phpstan-symfony": "^1.3",
+        "phpstan/phpstan-webmozart-assert": "^1.2",
+        "phpunit/phpunit": "^9.6",
+        "symfony/browser-kit": "^6.2",
+        "symfony/console": "^6.2",
+        "symfony/debug-bundle": "^6.2",
+        "symfony/dotenv": "^6.2",
+        "symfony/http-client": "^6.2",
+        "symfony/runtime": "^6.2",
+        "symfony/stopwatch": "^6.2",
+        "symfony/var-dumper": "^6.2",
+        "symfony/yaml": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Benjaminmal\\ExchangeRateBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Benjaminmal\\ExchangeRateBundle\\": "tests/",
+            "Tests\\Benjaminmal\\ExchangeRateBundle\\App\\": "tests/app/src"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "symfony/runtime": true,
+            "symfony/flex": true
+        }
+    },
+    "suggest": {
+        "nyholm/psr7": "A great and fast PSR-7 implementation with its PSR-17 factory",
+        "guzzlehttp/guzzle": "A great, complete and famous PSR-18 HTTP client",
+        "symfony/http-client": "Another PSR-18 client, official Symfony HTTP client implementation"
+    }
+}

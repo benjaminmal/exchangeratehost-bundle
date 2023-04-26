@@ -1,0 +1,289 @@
+{
+  "motd": {
+    "msg": "If you or your company use this project or like what we doing, please consider backing us so we can continue maintaining and evolving this project.",
+    "url": "https://exchangerate.host/#/donate"
+  },
+  "success": true,
+  "rates": {
+    "AT": {
+      "country_name": "Austria",
+      "standard_rate": 20,
+      "reduced_rates": [
+        10,
+        13
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": [
+        13
+      ]
+    },
+    "BE": {
+      "country_name": "Belgium",
+      "standard_rate": 21,
+      "reduced_rates": [
+        6,
+        12
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": [
+        12
+      ]
+    },
+    "BG": {
+      "country_name": "Bulgaria",
+      "standard_rate": 20,
+      "reduced_rates": [
+        9
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "CY": {
+      "country_name": "Cyprus",
+      "standard_rate": 19,
+      "reduced_rates": [
+        5,
+        9
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "CZ": {
+      "country_name": "Czechia",
+      "standard_rate": 21,
+      "reduced_rates": [
+        10,
+        15
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "DE": {
+      "country_name": "Germany",
+      "standard_rate": 19,
+      "reduced_rates": [
+        7
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "DK": {
+      "country_name": "Denmark",
+      "standard_rate": 25,
+      "reduced_rates": [],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "EE": {
+      "country_name": "Estonia",
+      "standard_rate": 20,
+      "reduced_rates": [
+        9
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "EL": {
+      "country_name": "Greece",
+      "standard_rate": 24,
+      "reduced_rates": [
+        6,
+        13
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "ES": {
+      "country_name": "Spain",
+      "standard_rate": 21,
+      "reduced_rates": [
+        10
+      ],
+      "super_reduced_rates": [
+        4
+      ],
+      "parking_rates": []
+    },
+    "FI": {
+      "country_name": "Finland",
+      "standard_rate": 24,
+      "reduced_rates": [
+        10,
+        14
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "FR": {
+      "country_name": "France",
+      "standard_rate": 20,
+      "reduced_rates": [
+        5.5,
+        10
+      ],
+      "super_reduced_rates": [
+        2.1
+      ],
+      "parking_rates": []
+    },
+    "HR": {
+      "country_name": "Croatia",
+      "standard_rate": 25,
+      "reduced_rates": [
+        5,
+        13
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "HU": {
+      "country_name": "Hungary",
+      "standard_rate": 27,
+      "reduced_rates": [
+        5,
+        18
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "IE": {
+      "country_name": "Ireland",
+      "standard_rate": 23,
+      "reduced_rates": [
+        9,
+        13.5
+      ],
+      "super_reduced_rates": [
+        4.8
+      ],
+      "parking_rates": [
+        13.5
+      ]
+    },
+    "IT": {
+      "country_name": "Italy",
+      "standard_rate": 22,
+      "reduced_rates": [
+        5,
+        10
+      ],
+      "super_reduced_rates": [
+        4
+      ],
+      "parking_rates": []
+    },
+    "LT": {
+      "country_name": "Lithuania",
+      "standard_rate": 21,
+      "reduced_rates": [
+        5,
+        9
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "LU": {
+      "country_name": "Luxembourg",
+      "standard_rate": 17,
+      "reduced_rates": [
+        8
+      ],
+      "super_reduced_rates": [
+        3
+      ],
+      "parking_rates": [
+        14
+      ]
+    },
+    "LV": {
+      "country_name": "Latvia",
+      "standard_rate": 21,
+      "reduced_rates": [
+        12,
+        5
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "MT": {
+      "country_name": "Malta",
+      "standard_rate": 18,
+      "reduced_rates": [
+        5,
+        7
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "NL": {
+      "country_name": "Netherlands",
+      "standard_rate": 21,
+      "reduced_rates": [
+        9
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "PL": {
+      "country_name": "Poland",
+      "standard_rate": 23,
+      "reduced_rates": [
+        5,
+        8
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "PT": {
+      "country_name": "Portugal",
+      "standard_rate": 23,
+      "reduced_rates": [
+        6,
+        13
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": [
+        13
+      ]
+    },
+    "RO": {
+      "country_name": "Romania",
+      "standard_rate": 19,
+      "reduced_rates": [
+        5,
+        9
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "SE": {
+      "country_name": "Sweden",
+      "standard_rate": 25,
+      "reduced_rates": [
+        6,
+        12
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "SI": {
+      "country_name": "Slovenia",
+      "standard_rate": 22,
+      "reduced_rates": [
+        5,
+        9.5
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    },
+    "SK": {
+      "country_name": "Slovakia",
+      "standard_rate": 20,
+      "reduced_rates": [
+        10
+      ],
+      "super_reduced_rates": [],
+      "parking_rates": []
+    }
+  }
+}
