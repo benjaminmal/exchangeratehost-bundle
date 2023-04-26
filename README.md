@@ -18,7 +18,7 @@ This bundle allows you to query the great [exchangerate.host](https://exchangera
 ## Installation
 ### Composer
 ```console  
-$ composer require benjaminmal/exchangerate-bundle
+$ composer require benjaminmal/exchangeratehost-bundle
 ```
 
 ### PSRs
