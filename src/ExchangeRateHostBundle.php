@@ -120,7 +120,7 @@ final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPas
                 ->arrayNode('cache')
                     ->children()
                         ->scalarNode('pool')
-                            ->info('The cache pool to use.')
+                            ->info('The cache pool to use. Set it to false to deactivate it (not recommended).')
                             ->defaultValue('cache.app')
                         ->end()
                         ->scalarNode('latest_rates_expiration')

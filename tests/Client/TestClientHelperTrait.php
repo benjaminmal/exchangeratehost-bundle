@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Tests\Benjaminmal\ExchangeRateHostBundle\Client;
 
 use Benjaminmal\ExchangeRateHostBundle\Client\ExchangeRateHostClient;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\HistoricalRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\LatestRatesOption;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Psr18Client;
@@ -42,13 +46,13 @@ trait TestClientHelperTrait
     public static function dataProvider(): array
     {
         return [
-            ['convert', 'convertCurrency', ['USD', 'EUR', 1200], null, 'https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1200', 1085.974844, 'convert_currency_6e0c1e626b224ee8d555529a52e53890', ['USD', 'EUR', 1400]],
-            ['eu_vat', 'getEuVatRates', [], null, 'https://api.exchangerate.host/vat_rates', null, 'eu_vat_rates_79d2874bde1128e7567da03c8ac34400', []],
-            ['fluctuation', 'getFluctuationData', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/fluctuation?start_date=2020-01-01&end_date=2020-01-04', null, 'fluctuation_data_db5afa7005c937adb81d972163d39e7f', ['2020-01-02', '2020-01-04']],
-            ['historical', 'getHistoricalRates', ['2020-04-04'], null, 'https://api.exchangerate.host/2020-04-04', null, 'historical_rates_3ceeca060d53ceb6e5b1dae4765578a3', ['2021-01-01']],
-            ['latest', 'getLatestRates', [], null, 'https://api.exchangerate.host/latest', null, 'latest_rates_28023f3d60e571a5e59b7826c35eca27', []],
-            ['symbols', 'getSupportedCurrencies', [], null, 'https://api.exchangerate.host/symbols', null, 'supported_currencies_55d7a5d5d65495c388b7ece10b947554', []],
-            ['timeseries', 'getTimeSeriesRates', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-01-04', null, 'timeseries_rates_db5afa7005c937adb81d972163d39e7f', ['2021-04-05', '2021-08-12']],
+            ['convert', 'convertCurrency', ['USD', 'EUR', 1200], new ConvertCurrencyOption(places: 10, date: new \DateTimeImmutable('2020-12-01')), 'https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1200&date=2020-12-01&places=10', 1085.2598780252, 'convert_currency_5a435f00ef37f20136b18ed649865f9b', ['USD', 'EUR', 1400]],
+            ['eu_vat', 'getEuVatRates', [], null, 'https://api.exchangerate.host/vat_rates', null, 'eu_vat_rates_1d11a4f652ab09181f9058d4bc9491a1', []],
+            ['fluctuation', 'getFluctuationData', ['2020-01-01', '2020-01-04'], new FluctuationDataOption(symbols: new \ArrayObject(['EUR', 'USD'])), 'https://api.exchangerate.host/fluctuation?start_date=2020-01-01&end_date=2020-01-04&symbols=EUR%2CUSD', null, 'fluctuation_data_e0e0542edd98ca3378c399090973c1a6', ['2020-01-02', '2020-01-04']],
+            ['historical', 'getHistoricalRates', ['2020-04-04'], new HistoricalRatesOption(symbols: 'EUR'), 'https://api.exchangerate.host/2020-04-04?symbols=EUR', null, 'historical_rates_e336dca0abcc1c240fa9b0c29e3ac8a8', ['2021-01-01']],
+            ['latest', 'getLatestRates', [], new LatestRatesOption(symbols: new \ArrayObject(['EUR', 'USD'])), 'https://api.exchangerate.host/latest?symbols=EUR%2CUSD', null, 'latest_rates_241147c5f0f0d669f5983141620f8bcd', []],
+            ['symbols', 'getSupportedCurrencies', [], null, 'https://api.exchangerate.host/symbols', null, 'supported_currencies_1d11a4f652ab09181f9058d4bc9491a1', []],
+            ['timeseries', 'getTimeSeriesRates', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-01-04', null, 'timeseries_rates_ceb7d8c1c5e7654fc17b3373c1d88232', ['2021-04-05', '2021-08-12']],
         ];
     }
 

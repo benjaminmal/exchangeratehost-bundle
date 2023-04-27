@@ -13,6 +13,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Contracts\Cache\CacheInterface;
 
 class BundleTest extends KernelTestCase
@@ -70,6 +71,51 @@ class BundleTest extends KernelTestCase
         } else {
             $this->assertNotInstanceOf($class, $service);
         }
+    }
+
+    /**
+     * @test
+     */
+    public function bootWithWrongCachePool(): void
+    {
+        $this->expectException(ServiceNotFoundException::class);
+
+        static::bootKernel(['environment' => 'test_with_invalid_cache']);
+        self::getContainer()->get('benjaminmal.exchangerate_host_bundle.cache_pool');
+    }
+
+    /**
+     * @test
+     */
+    public function correctCachePoolInContainer(): void
+    {
+        $container = self::getContainer();
+        $cachePool = $container->get('exchangerate_host.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+        $cachePool2 = $container->get('benjaminmal.exchangerate_host_bundle.cache_pool', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+
+        $this->assertSame($cachePool, $cachePool2);
+    }
+
+    /**
+     * @test
+     */
+    public function bootDev(): void
+    {
+        static::bootKernel(['environment' => 'dev']);
+        $container = self::getContainer();
+
+        $this->assertInstanceOf(ContainerInterface::class, $container);
+    }
+
+    /**
+     * @test
+     */
+    public function bootProd(): void
+    {
+        static::bootKernel(['environment' => 'prod']);
+        $container = self::getContainer();
+
+        $this->assertInstanceOf(ContainerInterface::class, $container);
     }
 
     public static function serviceProvider(): array

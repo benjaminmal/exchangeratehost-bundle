@@ -16,7 +16,7 @@ class ExchangeRateHostClientTest extends TestCase
      *
      * @dataProvider dataProvider
      */
-    public function convert(string $file, string $method, array $args, ?OptionInterface $option, string $expectedUrl, mixed $expectedResult): void
+    public function methods(string $file, string $method, array $args, ?OptionInterface $option, string $expectedUrl, mixed $expectedResult): void
     {
         $response = $this->createResponse($file);
         $client = $this->createClient([$response]);
