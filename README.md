@@ -62,7 +62,7 @@ exchangerate_host:
         pool: 'cache.app'
         
         # Data cache expiration. Optional. Could be an integer (seconds) or a string (date used 
-        # in DateTime::__construct(), e.g '+3days')
+        # in DateTime::__construct(), e.g '+3days', UTC timezone)
         latest_rates_expiration: 'tomorrow 6am'
         convert_currency_expiration: 'tomorrow 6am'
         historical_rates_expiration: 'tomorrow 6am'
