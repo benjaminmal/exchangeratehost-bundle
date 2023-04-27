@@ -42,13 +42,13 @@ trait TestClientHelperTrait
     public static function dataProvider(): array
     {
         return [
-            ['convert', 'convertCurrency', ['USD', 'EUR', 1200], null, 'https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1200', 1085.974844, 'convert_currency_USD_EUR_1200', ['USD', 'EUR', 1400]],
-            ['eu_vat', 'getEuVatRates', [], null, 'https://api.exchangerate.host/vat_rates', null, 'eu_vat_rates', []],
-            ['fluctuation', 'getFluctuationData', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/fluctuation?start_date=2020-01-01&end_date=2020-01-04', null, 'fluctuation_data_2020-01-01_2020-01-04', ['2020-01-02', '2020-01-04']],
-            ['historical', 'getHistoricalRates', ['2020-04-04'], null, 'https://api.exchangerate.host/2020-04-04', null, 'historical_rates_2020-04-04', ['2021-01-01']],
-            ['latest', 'getLatestRates', [], null, 'https://api.exchangerate.host/latest', null, 'latest_rates', []],
-            ['symbols', 'getSupportedCurrencies', [], null, 'https://api.exchangerate.host/symbols', null, 'supported_currencies', []],
-            ['timeseries', 'getTimeSeriesRates', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-01-04', null, 'timeseries_rates_2020-01-01_2020-01-04', ['2021-04-05', '2021-08-12']],
+            ['convert', 'convertCurrency', ['USD', 'EUR', 1200], null, 'https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1200', 1085.974844, 'convert_currency_6e0c1e626b224ee8d555529a52e53890', ['USD', 'EUR', 1400]],
+            ['eu_vat', 'getEuVatRates', [], null, 'https://api.exchangerate.host/vat_rates', null, 'eu_vat_rates_79d2874bde1128e7567da03c8ac34400', []],
+            ['fluctuation', 'getFluctuationData', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/fluctuation?start_date=2020-01-01&end_date=2020-01-04', null, 'fluctuation_data_db5afa7005c937adb81d972163d39e7f', ['2020-01-02', '2020-01-04']],
+            ['historical', 'getHistoricalRates', ['2020-04-04'], null, 'https://api.exchangerate.host/2020-04-04', null, 'historical_rates_3ceeca060d53ceb6e5b1dae4765578a3', ['2021-01-01']],
+            ['latest', 'getLatestRates', [], null, 'https://api.exchangerate.host/latest', null, 'latest_rates_28023f3d60e571a5e59b7826c35eca27', []],
+            ['symbols', 'getSupportedCurrencies', [], null, 'https://api.exchangerate.host/symbols', null, 'supported_currencies_55d7a5d5d65495c388b7ece10b947554', []],
+            ['timeseries', 'getTimeSeriesRates', ['2020-01-01', '2020-01-04'], null, 'https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-01-04', null, 'timeseries_rates_db5afa7005c937adb81d972163d39e7f', ['2021-04-05', '2021-08-12']],
         ];
     }
 

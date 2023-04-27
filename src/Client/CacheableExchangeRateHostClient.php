@@ -32,7 +32,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function getLatestRates(LatestRatesOption $options = new LatestRatesOption()): iterable
     {
-        $cacheName = $this->createCacheName('latest_rates', $options);
+        $cacheName = $this->createCacheName('latest_rates', ['options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($options): iterable {
             $this->setExpiration($item, $this->latestRatesExpiration);
@@ -43,7 +43,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ConvertCurrencyOption $options = new ConvertCurrencyOption()): float
     {
-        $cacheName = $this->createCacheName('convert_currency', $fromCurrency, $toCurrency, $amount, $options);
+        $cacheName = $this->createCacheName('convert_currency', ['fromCurrency' => $fromCurrency, 'toCurrency' => $toCurrency, 'amount' => $amount, 'options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($fromCurrency, $toCurrency, $amount, $options): float {
             $this->setExpiration($item, $this->convertCurrencyExpiration);
@@ -54,7 +54,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function getHistoricalRates(\DateTimeImmutable $date, HistoricalRatesOption $options = new HistoricalRatesOption()): iterable
     {
-        $cacheName = $this->createCacheName('historical_rates', $date, $options);
+        $cacheName = $this->createCacheName('historical_rates', ['date' => $date, 'options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($date, $options): iterable {
             $this->setExpiration($item, $this->historicalRatesExpiration);
@@ -65,7 +65,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, TimeSeriesDataOption $options = new TimeSeriesDataOption()): iterable
     {
-        $cacheName = $this->createCacheName('timeseries_rates', $startDate, $endDate, $options);
+        $cacheName = $this->createCacheName('timeseries_rates', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($startDate, $endDate, $options): iterable {
             $this->setExpiration($item, $this->timeseriesRatesExpiration);
@@ -76,7 +76,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, FluctuationDataOption $options = new FluctuationDataOption()): iterable
     {
-        $cacheName = $this->createCacheName('fluctuation_data', $startDate, $endDate, $options);
+        $cacheName = $this->createCacheName('fluctuation_data', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($startDate, $endDate, $options): iterable {
             $this->setExpiration($item, $this->fluctuationDataExpiration);
@@ -87,7 +87,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function getSupportedCurrencies(SupportedSymbolsOption $options = new SupportedSymbolsOption()): iterable
     {
-        $cacheName = $this->createCacheName('supported_currencies', $options);
+        $cacheName = $this->createCacheName('supported_currencies', ['options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($options): iterable {
             $this->setExpiration($item, $this->supportedCurrenciesExpiration);
@@ -98,7 +98,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
 
     public function getEuVatRates(EuVatRatesOption $options = new EuVatRatesOption()): iterable
     {
-        $cacheName = $this->createCacheName('eu_vat_rates', $options);
+        $cacheName = $this->createCacheName('eu_vat_rates', ['options' => $options]);
 
         return $this->cache->get($cacheName, function (ItemInterface $item) use ($options): iterable {
             $this->setExpiration($item, $this->euVatRatesExpiration);
@@ -116,26 +116,25 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         }
     }
 
-    private function createCacheName(string $prefix, mixed ...$args): string
+    /**
+     * @param mixed[] $parameters
+     */
+    private function createCacheName(string $prefix, array $parameters): string
     {
-        $parameters = [];
-        foreach ($args as $parameter) {
-            $parameters[] = match (true) {
-                $parameter instanceof OptionInterface => $this->createCacheName('', ...(array) $parameter),
+        $parameters = array_map(
+            static fn (mixed $parameter): mixed => match (true) {
+                $parameter instanceof OptionInterface => (array) $parameter,
                 $parameter instanceof \DateTimeImmutable => $parameter->format('Y-m-d'),
                 $parameter instanceof \Traversable => implode('_', iterator_to_array($parameter)),
                 is_array($parameter) => implode(',', $parameter),
                 is_scalar($parameter) => (string) $parameter,
                 default => null,
-            };
-        }
+            },
+            $parameters,
+        );
 
-        $stringParams = implode('_', array_filter($parameters, static fn (mixed $value): bool => null !== $value && '' !== $value));
+        $strParameters = md5(serialize($parameters));
 
-        if ('' === $prefix || '' === $stringParams) {
-            return $prefix . $stringParams;
-        }
-
-        return $prefix . '_' . $stringParams;
+        return implode('_', [$prefix, $strParameters]);
     }
 }
