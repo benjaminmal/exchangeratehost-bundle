@@ -75,10 +75,10 @@ class BundleTest extends KernelTestCase
     public static function serviceProvider(): array
     {
         return [
-            [ExchangeRateHostClientInterface::class, CacheableExchangeRateHostClient::class, true],
-            ['benjaminmal.exchangerate_host_bundle.client', CacheableExchangeRateHostClient::class, true],
-            ['benjaminmal.exchangerate_host_bundle.cacheable_client', CacheableExchangeRateHostClient::class, true],
+            [ExchangeRateHostClientInterface::class, TraceableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.client', TraceableExchangeRateHostClient::class, true],
             ['benjaminmal.exchangerate_host_bundle.traceable_client', TraceableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cacheable_client', CacheableExchangeRateHostClient::class, true],
             ['benjaminmal.exchangerate_host_bundle.base_client', ExchangeRateHostClient::class, true],
             ['benjaminmal.exchangerate_host_bundle.http_client', ClientInterface::class, true],
             ['benjaminmal.exchangerate_host_bundle.uri_factory', UriFactoryInterface::class, true],
@@ -86,8 +86,8 @@ class BundleTest extends KernelTestCase
             ['benjaminmal.exchangerate_host_bundle.cache_pool', CacheInterface::class, true],
 
             // Should not exist
-            [ExchangeRateHostClientInterface::class, TraceableExchangeRateHostClient::class, false],
-            ['benjaminmal.exchangerate_host_bundle.client', TraceableExchangeRateHostClient::class, false],
+            [ExchangeRateHostClientInterface::class, CacheableExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.client', CacheableExchangeRateHostClient::class, false],
             [ExchangeRateHostClientInterface::class, ExchangeRateHostClient::class, false],
             ['benjaminmal.exchangerate_host_bundle.client', ExchangeRateHostClient::class, false],
         ];

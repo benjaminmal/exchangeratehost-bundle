@@ -28,7 +28,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         $services
             ->set('benjaminmal.exchangerate_host_bundle.traceable_client')
             ->class(TraceableExchangeRateHostClient::class)
-            ->decorate('benjaminmal.exchangerate_host_bundle.client')
+            ->decorate('benjaminmal.exchangerate_host_bundle.client', priority: -128)
             ->args([
                 service('.inner'),
                 service('debug.stopwatch'),
