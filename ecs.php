@@ -8,5 +8,5 @@ return static function (ECSConfig $config): void {
     $config->import('vendor/e-lodgy/coding-standard/ecs.php');
 
     $config->paths(['config/', 'src/', 'tests/', 'ecs.php']);
-    $config->skip(['tests/app/var/']);
+    $config->skip(['tests/app/var/', 'tests/app/src/Controller/MyController.php']);
 };
