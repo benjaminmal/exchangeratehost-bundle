@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Benjaminmal\ExchangeRateBundle\Client;
+namespace Tests\Benjaminmal\ExchangeRateHostBundle\Client;
 
-use Benjaminmal\ExchangeRateBundle\Client\ExchangeRateClient;
+use Benjaminmal\ExchangeRateHostBundle\Client\ExchangeRateHostClient;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Psr18Client;
@@ -52,11 +52,11 @@ trait TestClientHelperTrait
         ];
     }
 
-    private function createClient(iterable $responses): ExchangeRateClient
+    private function createClient(iterable $responses): ExchangeRateHostClient
     {
         $httpClient = new Psr18Client(new MockHttpClient($responses));
         $uriFactory = $requestFactory = new Psr17Factory();
 
-        return new ExchangeRateClient($httpClient, $uriFactory, $requestFactory);
+        return new ExchangeRateHostClient($httpClient, $uriFactory, $requestFactory);
     }
 }

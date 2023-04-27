@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Benjaminmal\ExchangeRateBundle\App;
+namespace Tests\Benjaminmal\ExchangeRateHostBundle\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;

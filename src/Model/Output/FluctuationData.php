@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle\Model\Output;
+namespace Benjaminmal\ExchangeRateHostBundle\Model\Output;
 
 class FluctuationData
 {

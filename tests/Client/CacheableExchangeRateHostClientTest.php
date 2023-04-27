@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Tests\Benjaminmal\ExchangeRateBundle\Client;
+namespace Tests\Benjaminmal\ExchangeRateHostBundle\Client;
 
-use Benjaminmal\ExchangeRateBundle\Client\CacheableExchangeRateClient;
-use Benjaminmal\ExchangeRateBundle\Exception\ClientException;
-use Benjaminmal\ExchangeRateBundle\Model\Option\OptionInterface;
+use Benjaminmal\ExchangeRateHostBundle\Client\CacheableExchangeRateHostClient;
+use Benjaminmal\ExchangeRateHostBundle\Exception\ClientException;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use Symfony\Contracts\Cache\CacheInterface;
 
-class CacheableExchangeRateClientTest extends TestCase
+class CacheableExchangeRateHostClientTest extends TestCase
 {
     use TestClientHelperTrait;
 
@@ -88,9 +88,9 @@ class CacheableExchangeRateClientTest extends TestCase
         $client->$method(...$this->convertArguments($alternateArgs));
     }
 
-    private function createCacheableClient(iterable $responses, CacheInterface $cache): CacheableExchangeRateClient
+    private function createCacheableClient(iterable $responses, CacheInterface $cache): CacheableExchangeRateHostClient
     {
-        return new CacheableExchangeRateClient(
+        return new CacheableExchangeRateHostClient(
             $this->createClient($responses),
             $cache,
             'tomorrow 9am',

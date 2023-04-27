@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Benjaminmal\ExchangeRateBundle\Client;
+namespace Tests\Benjaminmal\ExchangeRateHostBundle\Client;
 
-use Benjaminmal\ExchangeRateBundle\Model\Option\OptionInterface;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
 
-class ExchangeRateClientTest extends TestCase
+class ExchangeRateHostClientTest extends TestCase
 {
     use TestClientHelperTrait;
 

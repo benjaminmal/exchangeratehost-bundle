@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Benjaminmal\ExchangeRateBundle\Model\Output\SymbolData;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\SymbolData;
 
 return [
     'AED' => new SymbolData(

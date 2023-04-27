@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle\Client;
+namespace Benjaminmal\ExchangeRateHostBundle\Client;
 
-use Benjaminmal\ExchangeRateBundle\Model\Option\ConvertCurrencyOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\EuVatRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\FluctuationDataOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\HistoricalRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\LatestRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\OptionInterface;
-use Benjaminmal\ExchangeRateBundle\Model\Option\SupportedSymbolsOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\TimeSeriesDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\EuVatRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\HistoricalRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\LatestRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\OptionInterface;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\SupportedSymbolsOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\TimeSeriesDataOption;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
-final class CacheableExchangeRateClient implements ExchangeRateClientInterface
+final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInterface
 {
     public function __construct(
-        private readonly ExchangeRateClientInterface $decoratedClient,
+        private readonly ExchangeRateHostClientInterface $decoratedClient,
         private readonly CacheInterface $cache,
         private readonly int|string $latestRatesExpiration,
         private readonly int|string $convertCurrencyExpiration,

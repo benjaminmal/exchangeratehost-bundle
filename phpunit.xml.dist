@@ -11,7 +11,7 @@
     <php>
         <ini name="error_reporting" value="-1"/>
         <server name="SHELL_VERBOSITY" value="-1"/>
-        <env name="KERNEL_CLASS" value="Tests\Benjaminmal\ExchangeRateBundle\App\Kernel"/>
+        <env name="KERNEL_CLASS" value="Tests\Benjaminmal\ExchangeRateHostBundle\App\Kernel"/>
     </php>
     <testsuites>
         <testsuite name="Library Test Suite">

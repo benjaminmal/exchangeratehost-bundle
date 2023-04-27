@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle\Client;
+namespace Benjaminmal\ExchangeRateHostBundle\Client;
 
-use Benjaminmal\ExchangeRateBundle\Exception\ClientException;
-use Benjaminmal\ExchangeRateBundle\Model\Option\ConvertCurrencyOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\EuVatRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\FluctuationDataOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\HistoricalRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\LatestRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\SupportedSymbolsOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\TimeSeriesDataOption;
-use Benjaminmal\ExchangeRateBundle\Model\Output\FluctuationData;
-use Benjaminmal\ExchangeRateBundle\Model\Output\SymbolData;
-use Benjaminmal\ExchangeRateBundle\Model\Output\VatRates;
+use Benjaminmal\ExchangeRateHostBundle\Exception\ClientException;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\EuVatRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\HistoricalRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\LatestRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\SupportedSymbolsOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\TimeSeriesDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\FluctuationData;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\SymbolData;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\VatRates;
 
-interface ExchangeRateClientInterface
+interface ExchangeRateHostClientInterface
 {
     /**
      * Get the latest foreign exchange reference rates. Latest endpoint will return

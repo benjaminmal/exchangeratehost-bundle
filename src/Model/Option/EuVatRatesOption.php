@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle\Model\Option;
+namespace Benjaminmal\ExchangeRateHostBundle\Model\Option;
 
 class EuVatRatesOption implements OptionInterface
 {
