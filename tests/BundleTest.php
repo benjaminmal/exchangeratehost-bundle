@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Benjaminmal\ExchangeRateBundle;
+namespace Tests\Benjaminmal\ExchangeRateHostBundle;
 
-use Benjaminmal\ExchangeRateBundle\Client\CacheableExchangeRateClient;
-use Benjaminmal\ExchangeRateBundle\Client\ExchangeRateClient;
-use Benjaminmal\ExchangeRateBundle\Client\ExchangeRateClientInterface;
-use Benjaminmal\ExchangeRateBundle\Client\TraceableExchangeRateClient;
+use Benjaminmal\ExchangeRateHostBundle\Client\CacheableExchangeRateHostClient;
+use Benjaminmal\ExchangeRateHostBundle\Client\ExchangeRateHostClient;
+use Benjaminmal\ExchangeRateHostBundle\Client\ExchangeRateHostClientInterface;
+use Benjaminmal\ExchangeRateHostBundle\Client\TraceableExchangeRateHostClient;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
@@ -75,42 +75,42 @@ class BundleTest extends KernelTestCase
     public static function serviceProvider(): array
     {
         return [
-            [ExchangeRateClientInterface::class, CacheableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.client', CacheableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.cacheable_client', CacheableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.traceable_client', TraceableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.base_client', ExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.http_client', ClientInterface::class, true],
-            ['benjaminmal.exchangerate_bundle.uri_factory', UriFactoryInterface::class, true],
-            ['benjaminmal.exchangerate_bundle.request_factory', RequestFactoryInterface::class, true],
-            ['benjaminmal.exchangerate_bundle.cache_pool', CacheInterface::class, true],
+            [ExchangeRateHostClientInterface::class, CacheableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.client', CacheableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cacheable_client', CacheableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.traceable_client', TraceableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.base_client', ExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.http_client', ClientInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.uri_factory', UriFactoryInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.request_factory', RequestFactoryInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool', CacheInterface::class, true],
 
             // Should not exist
-            [ExchangeRateClientInterface::class, TraceableExchangeRateClient::class, false],
-            ['benjaminmal.exchangerate_bundle.client', TraceableExchangeRateClient::class, false],
-            [ExchangeRateClientInterface::class, ExchangeRateClient::class, false],
-            ['benjaminmal.exchangerate_bundle.client', ExchangeRateClient::class, false],
+            [ExchangeRateHostClientInterface::class, TraceableExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.client', TraceableExchangeRateHostClient::class, false],
+            [ExchangeRateHostClientInterface::class, ExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.client', ExchangeRateHostClient::class, false],
         ];
     }
 
     public static function noCacheServiceProvider(): array
     {
         return [
-            [ExchangeRateClientInterface::class, TraceableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.client', TraceableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.traceable_client', TraceableExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.base_client', ExchangeRateClient::class, true],
-            ['benjaminmal.exchangerate_bundle.http_client', ClientInterface::class, true],
-            ['benjaminmal.exchangerate_bundle.uri_factory', UriFactoryInterface::class, true],
-            ['benjaminmal.exchangerate_bundle.request_factory', RequestFactoryInterface::class, true],
+            [ExchangeRateHostClientInterface::class, TraceableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.client', TraceableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.traceable_client', TraceableExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.base_client', ExchangeRateHostClient::class, true],
+            ['benjaminmal.exchangerate_host_bundle.http_client', ClientInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.uri_factory', UriFactoryInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.request_factory', RequestFactoryInterface::class, true],
 
             // Should not exist
-            [ExchangeRateClientInterface::class, CacheableExchangeRateClient::class, false],
-            ['benjaminmal.exchangerate_bundle.client', CacheableExchangeRateClient::class, false],
-            ['benjaminmal.exchangerate_bundle.cacheable_client', CacheableExchangeRateClient::class, false],
-            ['benjaminmal.exchangerate_bundle.cache_pool', CacheInterface::class, false],
-            [ExchangeRateClientInterface::class, ExchangeRateClient::class, false],
-            ['benjaminmal.exchangerate_bundle.client', ExchangeRateClient::class, false],
+            [ExchangeRateHostClientInterface::class, CacheableExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.client', CacheableExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cacheable_client', CacheableExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool', CacheInterface::class, false],
+            [ExchangeRateHostClientInterface::class, ExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.client', ExchangeRateHostClient::class, false],
         ];
     }
 }

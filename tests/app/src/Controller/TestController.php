@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Benjaminmal\ExchangeRateBundle\App\Controller;
+namespace Tests\Benjaminmal\ExchangeRateHostBundle\App\Controller;
 
-use Benjaminmal\ExchangeRateBundle\Client\ExchangeRateClientInterface;
+use Benjaminmal\ExchangeRateHostBundle\Client\ExchangeRateHostClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TestController extends AbstractController
 {
     public function __construct(
-        private readonly ExchangeRateClientInterface $client,
+        private readonly ExchangeRateHostClientInterface $client,
     ) {
     }
 

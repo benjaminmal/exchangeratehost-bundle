@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle\Exception;
+namespace Benjaminmal\ExchangeRateHostBundle\Exception;
 
 /**
  * When the server responds with an unexpected response.

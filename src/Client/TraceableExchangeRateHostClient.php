@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle\Client;
+namespace Benjaminmal\ExchangeRateHostBundle\Client;
 
-use Benjaminmal\ExchangeRateBundle\Model\Option\ConvertCurrencyOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\EuVatRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\FluctuationDataOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\HistoricalRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\LatestRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\SupportedSymbolsOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\TimeSeriesDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\EuVatRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\HistoricalRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\LatestRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\SupportedSymbolsOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\TimeSeriesDataOption;
 use Symfony\Component\Stopwatch\Stopwatch;
 
-final class TraceableExchangeRateClient implements ExchangeRateClientInterface
+final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInterface
 {
     private const STOPWATCH_CATEGORY = 'exchangerate-client';
 
     public function __construct(
-        private readonly ExchangeRateClientInterface $decoratedClient,
+        private readonly ExchangeRateHostClientInterface $decoratedClient,
         private readonly Stopwatch $stopwatch,
     ) {
     }

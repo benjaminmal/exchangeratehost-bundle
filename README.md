@@ -32,12 +32,13 @@ $ composer require nyholm/psr7 symfony/http-client
 If you're using [Symfony Flex](https://symfony.com/doc/current/quick_tour/flex_recipes.html) and the recommended librairies, you're all set! 
 
 Otherwise, enable the bundle by adding it to the list of registered bundles in the `config/bundles.php` file of your project:
+
 ```php
 // config/bundles.php
 
 return [
     // ...
-    Benjaminmal\ExchangeRateBundle\ExchangeRateBundle::class => ['all' => true],
+    Benjaminmal\ExchangeRateHostBundle\ExchangeRateHostBundle::class => ['all' => true],
 ];
 ```
 
@@ -54,8 +55,8 @@ services:
 ### Config
 Here are the default values:
 ```yaml
-# exchangerate_host.yaml
-exchangeratehost:
+# exchangerates_host.yaml
+exchangerates_host:
     cache:
         # Set the cache pool. Optional. Set it to false if you don't want to use cache (not recommended).
         pool: 'cache.app'
@@ -76,22 +77,22 @@ The API client is available through autowiring via `ExchangeRateClientInterface`
 ```php
 namespace App\Service;
 
-use Benjaminmal\ExchangeRateBundle\Client\ExchangeRateClientInterface;
-use Benjaminmal\ExchangeRateBundle\Model\Option\ConvertCurrencyOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\EuVatRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\FluctuationDataOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\HistoricalRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\LatestRatesOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\SupportedSymbolsOption;
-use Benjaminmal\ExchangeRateBundle\Model\Option\TimeSeriesDataOption;
-use Benjaminmal\ExchangeRateBundle\Model\Output\FluctuationData;
-use Benjaminmal\ExchangeRateBundle\Model\Output\SymbolData;
-use Benjaminmal\ExchangeRateBundle\Model\Output\VatRates;
+use Benjaminmal\ExchangeRateHostBundle\Client\ExchangeRateHostClientInterface;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\EuVatRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\HistoricalRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\LatestRatesOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\SupportedSymbolsOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Option\TimeSeriesDataOption;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\FluctuationData;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\SymbolData;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\VatRates;
 
 class MyService
 {
     public function __construct(
-        private readonly ExchangeRateClientInterface $client,
+        private readonly ExchangeRateHostClientInterface $client,
     ) {
     }
 

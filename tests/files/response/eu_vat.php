@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Benjaminmal\ExchangeRateBundle\Model\Output\VatRates;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\VatRates;
 
 return [
     'AT' => new VatRates(

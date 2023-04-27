@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Benjaminmal\ExchangeRateBundle\Model\Output\FluctuationData;
+use Benjaminmal\ExchangeRateHostBundle\Model\Output\FluctuationData;
 
 return [
     'USD' => new FluctuationData(

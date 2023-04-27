@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Benjaminmal\ExchangeRateBundle;
+namespace Benjaminmal\ExchangeRateHostBundle;
 
-use Benjaminmal\ExchangeRateBundle\Client\CacheableExchangeRateClient;
+use Benjaminmal\ExchangeRateHostBundle\Client\CacheableExchangeRateHostClient;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
-final class ExchangeRateBundle extends AbstractBundle implements CompilerPassInterface
+final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPassInterface
 {
     protected string $extensionAlias = 'exchangerate_host';
 
@@ -29,55 +29,55 @@ final class ExchangeRateBundle extends AbstractBundle implements CompilerPassInt
             // Expiration
             if (isset($config['cache']['latest_rates_expiration'])) {
                 $this->validateExpiration($config['cache']['latest_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.latest_rates_expiration', $config['cache']['latest_rates_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.latest_rates_expiration', $config['cache']['latest_rates_expiration']);
             }
 
             if (isset($config['cache']['convert_currency_expiration'])) {
                 $this->validateExpiration($config['cache']['convert_currency_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.convert_currency_expiration', $config['cache']['convert_currency_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.convert_currency_expiration', $config['cache']['convert_currency_expiration']);
             }
 
             if (isset($config['cache']['historical_rates_expiration'])) {
                 $this->validateExpiration($config['cache']['historical_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.historical_rates_expiration', $config['cache']['historical_rates_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.historical_rates_expiration', $config['cache']['historical_rates_expiration']);
             }
 
             if (isset($config['cache']['timeseries_rates_expiration'])) {
                 $this->validateExpiration($config['cache']['timeseries_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.timeseries_rates_expiration', $config['cache']['timeseries_rates_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.timeseries_rates_expiration', $config['cache']['timeseries_rates_expiration']);
             }
 
             if (isset($config['cache']['fluctuation_data_expiration'])) {
                 $this->validateExpiration($config['cache']['fluctuation_data_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.fluctuation_data_expiration', $config['cache']['fluctuation_data_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.fluctuation_data_expiration', $config['cache']['fluctuation_data_expiration']);
             }
 
             if (isset($config['cache']['supported_currencies_expiration'])) {
                 $this->validateExpiration($config['cache']['supported_currencies_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.supported_currencies_expiration', $config['cache']['supported_currencies_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.supported_currencies_expiration', $config['cache']['supported_currencies_expiration']);
             }
 
             if (isset($config['cache']['eu_vat_rates_expiration'])) {
                 $this->validateExpiration($config['cache']['eu_vat_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_bundle.cache.eu_vat_rates_expiration', $config['cache']['eu_vat_rates_expiration']);
+                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.eu_vat_rates_expiration', $config['cache']['eu_vat_rates_expiration']);
             }
 
-            $builder->setAlias('benjaminmal.exchangerate_bundle.cache_pool', $config['cache']['pool']);
+            $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool', $config['cache']['pool']);
             $services = $container->services();
             $services
-                ->set('benjaminmal.exchangerate_bundle.cacheable_client')
-                ->class(CacheableExchangeRateClient::class)
-                ->decorate('benjaminmal.exchangerate_bundle.client')
+                ->set('benjaminmal.exchangerate_host_bundle.cacheable_client')
+                ->class(CacheableExchangeRateHostClient::class)
+                ->decorate('benjaminmal.exchangerate_host_bundle.client')
                 ->args([
                     service('.inner'),
-                    service('benjaminmal.exchangerate_bundle.cache_pool'),
-                    param('benjaminmal.exchangerate_bundle.cache.latest_rates_expiration'),
-                    param('benjaminmal.exchangerate_bundle.cache.convert_currency_expiration'),
-                    param('benjaminmal.exchangerate_bundle.cache.historical_rates_expiration'),
-                    param('benjaminmal.exchangerate_bundle.cache.timeseries_rates_expiration'),
-                    param('benjaminmal.exchangerate_bundle.cache.fluctuation_data_expiration'),
-                    param('benjaminmal.exchangerate_bundle.cache.supported_currencies_expiration'),
-                    param('benjaminmal.exchangerate_bundle.cache.eu_vat_rates_expiration'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.latest_rates_expiration'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.convert_currency_expiration'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.historical_rates_expiration'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.timeseries_rates_expiration'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.fluctuation_data_expiration'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.supported_currencies_expiration'),
+                    param('benjaminmal.exchangerate_host_bundle.cache.eu_vat_rates_expiration'),
                 ])
             ;
         }
@@ -91,24 +91,24 @@ final class ExchangeRateBundle extends AbstractBundle implements CompilerPassInt
     public function process(ContainerBuilder $container): void
     {
         // Alias PSRs if interfaces are already set in container
-        if (! $container->has('benjaminmal.exchangerate_bundle.request_factory')
+        if (! $container->has('benjaminmal.exchangerate_host_bundle.request_factory')
             && $container->has(RequestFactoryInterface::class)
         ) {
-            $container->setAlias('benjaminmal.exchangerate_bundle.request_factory', RequestFactoryInterface::class);
+            $container->setAlias('benjaminmal.exchangerate_host_bundle.request_factory', RequestFactoryInterface::class);
         }
 
-        if (! $container->has('benjaminmal.exchangerate_bundle.uri_factory')
+        if (! $container->has('benjaminmal.exchangerate_host_bundle.uri_factory')
             && $container->has(UriFactoryInterface::class)
         ) {
-            $container->setAlias('benjaminmal.exchangerate_bundle.uri_factory', UriFactoryInterface::class);
+            $container->setAlias('benjaminmal.exchangerate_host_bundle.uri_factory', UriFactoryInterface::class);
         }
 
-        if (! $container->has('benjaminmal.exchangerate_bundle.http_client')
+        if (! $container->has('benjaminmal.exchangerate_host_bundle.http_client')
             && $container->has('psr18.http_client')
         ) {
-            $container->setAlias('benjaminmal.exchangerate_bundle.http_client', 'psr18.http_client');
+            $container->setAlias('benjaminmal.exchangerate_host_bundle.http_client', 'psr18.http_client');
         } elseif ($container->has(ClientInterface::class)) {
-            $container->setAlias('benjaminmal.exchangerate_bundle.http_client', ClientInterface::class);
+            $container->setAlias('benjaminmal.exchangerate_host_bundle.http_client', ClientInterface::class);
         }
     }
 
