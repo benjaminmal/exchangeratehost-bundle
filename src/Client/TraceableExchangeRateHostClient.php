@@ -23,7 +23,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
     ) {
     }
 
-    public function getLatestRates(LatestRatesOption $options = new LatestRatesOption()): iterable
+    public function getLatestRates(?LatestRatesOption $options = null): iterable
     {
         $this->stopwatch->start('getLatestRates', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->getLatestRates($options);
@@ -32,7 +32,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ConvertCurrencyOption $options = new ConvertCurrencyOption()): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ?ConvertCurrencyOption $options = null): float
     {
         $this->stopwatch->start('convertCurrency', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->convertCurrency($fromCurrency, $toCurrency, $amount, $options);
@@ -41,7 +41,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function getHistoricalRates(\DateTimeImmutable $date, HistoricalRatesOption $options = new HistoricalRatesOption()): iterable
+    public function getHistoricalRates(\DateTimeImmutable $date, ?HistoricalRatesOption $options = null): iterable
     {
         $this->stopwatch->start('getHistoricalRates', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->getHistoricalRates($date, $options);
@@ -50,7 +50,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, TimeSeriesDataOption $options = new TimeSeriesDataOption()): iterable
+    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?TimeSeriesDataOption $options = null): iterable
     {
         $this->stopwatch->start('getTimeSeriesRates', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->getTimeSeriesRates($startDate, $endDate, $options);
@@ -59,7 +59,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, FluctuationDataOption $options = new FluctuationDataOption()): iterable
+    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?FluctuationDataOption $options = null): iterable
     {
         $this->stopwatch->start('getFluctuationData', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->getFluctuationData($startDate, $endDate, $options);
@@ -68,7 +68,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function getSupportedCurrencies(SupportedSymbolsOption $options = new SupportedSymbolsOption()): iterable
+    public function getSupportedCurrencies(?SupportedSymbolsOption $options = null): iterable
     {
         $this->stopwatch->start('getSupportedCurrencies', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->getSupportedCurrencies($options);
@@ -77,7 +77,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function getEuVatRates(EuVatRatesOption $options = new EuVatRatesOption()): iterable
+    public function getEuVatRates(?EuVatRatesOption $options = null): iterable
     {
         $this->stopwatch->start('getEuVatRates', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->getEuVatRates($options);

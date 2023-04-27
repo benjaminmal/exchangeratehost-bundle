@@ -30,7 +30,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     ) {
     }
 
-    public function getLatestRates(LatestRatesOption $options = new LatestRatesOption()): iterable
+    public function getLatestRates(?LatestRatesOption $options = null): iterable
     {
         $cacheName = $this->createCacheName('latest_rates', ['options' => $options]);
 
@@ -41,7 +41,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ConvertCurrencyOption $options = new ConvertCurrencyOption()): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ?ConvertCurrencyOption $options = null): float
     {
         $cacheName = $this->createCacheName('convert_currency', ['fromCurrency' => $fromCurrency, 'toCurrency' => $toCurrency, 'amount' => $amount, 'options' => $options]);
 
@@ -52,7 +52,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function getHistoricalRates(\DateTimeImmutable $date, HistoricalRatesOption $options = new HistoricalRatesOption()): iterable
+    public function getHistoricalRates(\DateTimeImmutable $date, ?HistoricalRatesOption $options = null): iterable
     {
         $cacheName = $this->createCacheName('historical_rates', ['date' => $date, 'options' => $options]);
 
@@ -63,7 +63,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, TimeSeriesDataOption $options = new TimeSeriesDataOption()): iterable
+    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?TimeSeriesDataOption $options = null): iterable
     {
         $cacheName = $this->createCacheName('timeseries_rates', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]);
 
@@ -74,7 +74,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, FluctuationDataOption $options = new FluctuationDataOption()): iterable
+    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?FluctuationDataOption $options = null): iterable
     {
         $cacheName = $this->createCacheName('fluctuation_data', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]);
 
@@ -85,7 +85,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function getSupportedCurrencies(SupportedSymbolsOption $options = new SupportedSymbolsOption()): iterable
+    public function getSupportedCurrencies(?SupportedSymbolsOption $options = null): iterable
     {
         $cacheName = $this->createCacheName('supported_currencies', ['options' => $options]);
 
@@ -96,7 +96,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function getEuVatRates(EuVatRatesOption $options = new EuVatRatesOption()): iterable
+    public function getEuVatRates(?EuVatRatesOption $options = null): iterable
     {
         $cacheName = $this->createCacheName('eu_vat_rates', ['options' => $options]);
 
