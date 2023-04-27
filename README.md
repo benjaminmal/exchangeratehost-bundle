@@ -42,7 +42,7 @@ return [
 ];
 ```
 
-Then add [PSR-17](https://www.php-fig.org/psr/psr-17/) and [PSR-18](https://www.php-fig.org/psr/psr-18/) services if they don't exist yet:
+Then add your implementation of [PSR-17](https://www.php-fig.org/psr/psr-17/) and [PSR-18](https://www.php-fig.org/psr/psr-18/) services if they don't exist yet:
 ```yaml
 # services.yaml
 services:
@@ -96,7 +96,7 @@ class MyService
     ) {
     }
 
-    public function get(): Response
+    public function getLatestRates()
     {
         // Get the latest rates
         $rates = $this->client->getLatestRates(
@@ -118,6 +118,11 @@ class MyService
             // ...
         }
 
+        // ...
+    }
+    
+    public function convertCurrency(): int
+    {
         // Convert price
         /** @var int $newAmount */
         $newAmount = $this->client->convertCurrency(
@@ -127,6 +132,11 @@ class MyService
             options: new ConvertCurrencyOption(), // Optional
         );
         
+        // ...
+    }
+    
+    public function getHistoricalRates()
+    {
         // Get rates from a specific day
         $rates = $this->client->getHistoricalRates(
             date: new \DateTimeImmutable('-10days'), // Required, will be converted in the url with the format 'Y-m-d'
@@ -141,6 +151,11 @@ class MyService
             // ...
         }
         
+        // ...
+    }
+    
+    public function getTimeSeriesRates()
+    {
         // Get the rates between 2 dates
         $rates = $this->client->getTimeSeriesRates(
             startDate: new \DateTimeImmutable('-89days'), // Required
@@ -158,6 +173,11 @@ class MyService
             }
         }
 
+        // ...
+    }
+    
+    public function getFluctuationData()
+    {
         // Get the fluctuation data between 2 dates
         $data = $this->client->getFluctuationData(
             startDate: new \DateTimeImmutable('-89days'), // Required
@@ -175,6 +195,11 @@ class MyService
             echo $fluctuationData->changePct;
         }
         
+        // ...
+    }
+    
+    public function getCurrencies()
+    {
         // Get the supported currencies
         $supportedCurrencies = $this->client->getSupportedCurrencies(
             options: new SupportedSymbolsOption(), // Optional
@@ -188,6 +213,11 @@ class MyService
             echo $supportedCurrency->description;
         }
         
+        // ...
+    }
+    
+    public function getEurVatRates()
+    {
         // Get EU VAT rates
         $rates = $this->client->getEuVatRates(
             options: new EuVatRatesOption(), // Optional
