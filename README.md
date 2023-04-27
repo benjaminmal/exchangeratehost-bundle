@@ -55,8 +55,8 @@ services:
 ### Config
 Here are the default values:
 ```yaml
-# exchangerates_host.yaml
-exchangerates_host:
+# exchangerate_host.yaml
+exchangerate_host:
     cache:
         # Set the cache pool. Optional. Set it to false if you don't want to use cache (not recommended).
         pool: 'cache.app'
