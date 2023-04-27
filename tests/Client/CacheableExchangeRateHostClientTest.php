@@ -28,7 +28,7 @@ class CacheableExchangeRateHostClientTest extends TestCase
         $response = $this->createResponse($file);
         $client = $this->createCacheableClient([$response], $cachePool);
         $args = $this->convertArguments($args);
-        $result = $client->$method(...$args);
+        $result = $client->$method(...[...$args, $option]);
 
         $this->assertSame('GET', $response->getRequestMethod());
         $this->assertSame(200, $response->getStatusCode());
@@ -57,7 +57,7 @@ class CacheableExchangeRateHostClientTest extends TestCase
         $response = $this->createResponse($file);
         $client = $this->createCacheableClient([$response], $cachePool);
         $args = $this->convertArguments($args);
-        $result = $client->$method(...$args);
+        $result = $client->$method(...[...$args, $option]);
 
         $this->assertSame('GET', $response->getRequestMethod());
         $this->assertSame(200, $response->getStatusCode());
@@ -69,7 +69,7 @@ class CacheableExchangeRateHostClientTest extends TestCase
 
         // Try a 2nd time with caching with error response (should not get error since its cached)
         $client = $this->createCacheableClient([new MockResponse('', ['http_code' => 404])], $cachePool);
-        $result = $client->$method(...$args);
+        $result = $client->$method(...[...$args, $option]);
         $this->assertEquals($expectedResult, $result);
 
         // Try a 3rd time with other params so should not hit cache

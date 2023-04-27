@@ -20,7 +20,7 @@ class ExchangeRateHostClientTest extends TestCase
     {
         $response = $this->createResponse($file);
         $client = $this->createClient([$response]);
-        $result = $client->$method(...$this->convertArguments($args));
+        $result = $client->$method(...[...$this->convertArguments($args), $option]);
 
         $this->assertSame('GET', $response->getRequestMethod());
         $this->assertSame(200, $response->getStatusCode());

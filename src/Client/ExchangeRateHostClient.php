@@ -34,7 +34,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
     ) {
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ConvertCurrencyOption $options = new ConvertCurrencyOption()): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ?ConvertCurrencyOption $options = null): float
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -49,7 +49,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         return $result;
     }
 
-    public function getLatestRates(LatestRatesOption $options = new LatestRatesOption()): \ArrayObject
+    public function getLatestRates(?LatestRatesOption $options = null): \ArrayObject
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -64,7 +64,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         return new \ArrayObject($rates);
     }
 
-    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, FluctuationDataOption $options = new FluctuationDataOption()): \ArrayObject
+    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?FluctuationDataOption $options = null): \ArrayObject
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -90,7 +90,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         return $array;
     }
 
-    public function getHistoricalRates(\DateTimeImmutable $date, HistoricalRatesOption $options = new HistoricalRatesOption()): \ArrayObject
+    public function getHistoricalRates(\DateTimeImmutable $date, ?HistoricalRatesOption $options = null): \ArrayObject
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -105,7 +105,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         return new \ArrayObject($rates);
     }
 
-    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, TimeSeriesDataOption $options = new TimeSeriesDataOption()): \ArrayObject
+    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?TimeSeriesDataOption $options = null): \ArrayObject
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -120,7 +120,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         return new \ArrayObject($rates);
     }
 
-    public function getSupportedCurrencies(SupportedSymbolsOption $options = new SupportedSymbolsOption()): \ArrayObject
+    public function getSupportedCurrencies(?SupportedSymbolsOption $options = null): \ArrayObject
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -144,7 +144,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         return $symbolsDatas;
     }
 
-    public function getEuVatRates(EuVatRatesOption $options = new EuVatRatesOption()): \ArrayObject
+    public function getEuVatRates(?EuVatRatesOption $options = null): \ArrayObject
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -180,7 +180,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
     /**
      * @param array<string, mixed> $other
      */
-    private function createQuery(OptionInterface $option, array $other = []): string
+    private function createQuery(?OptionInterface $option, array $other = []): string
     {
         $data = [...$other, ...(array) $option];
 

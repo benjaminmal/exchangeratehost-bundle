@@ -46,7 +46,7 @@ trait TestClientHelperTrait
     public static function dataProvider(): array
     {
         return [
-            ['convert', 'convertCurrency', ['USD', 'EUR', 1200], new ConvertCurrencyOption(places: 10, date: new \DateTimeImmutable('2020-12-01')), 'https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1200&date=2020-12-01&places=10', 1085.2598780252, 'convert_currency_5a435f00ef37f20136b18ed649865f9b', ['USD', 'EUR', 1400]],
+            ['convert', 'convertCurrency', ['USD', 'EUR', 1200], new ConvertCurrencyOption(places: 10, date: new \DateTimeImmutable('2020-12-01', new \DateTimeZone('UTC'))), 'https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1200&date=2020-12-01&places=10', 1085.2598780252, 'convert_currency_e5d8bcc6f903040af595ffe97d24c6e3', ['USD', 'EUR', 1400]],
             ['eu_vat', 'getEuVatRates', [], null, 'https://api.exchangerate.host/vat_rates', null, 'eu_vat_rates_1d11a4f652ab09181f9058d4bc9491a1', []],
             ['fluctuation', 'getFluctuationData', ['2020-01-01', '2020-01-04'], new FluctuationDataOption(symbols: new \ArrayObject(['EUR', 'USD'])), 'https://api.exchangerate.host/fluctuation?start_date=2020-01-01&end_date=2020-01-04&symbols=EUR%2CUSD', null, 'fluctuation_data_e0e0542edd98ca3378c399090973c1a6', ['2020-01-02', '2020-01-04']],
             ['historical', 'getHistoricalRates', ['2020-04-04'], new HistoricalRatesOption(symbols: 'EUR'), 'https://api.exchangerate.host/2020-04-04?symbols=EUR', null, 'historical_rates_e336dca0abcc1c240fa9b0c29e3ac8a8', ['2021-01-01']],

@@ -26,7 +26,7 @@ interface ExchangeRateHostClientInterface
      *
      * @return iterable<string, float> iterable<currency, rates>
      */
-    public function getLatestRates(LatestRatesOption $options = new LatestRatesOption()): iterable;
+    public function getLatestRates(?LatestRatesOption $options = null): iterable;
 
     /**
      * Currency conversion endpoint, can be used to convert any amount from one currency to another.
@@ -39,7 +39,7 @@ interface ExchangeRateHostClientInterface
      *
      * @throws ClientException when the server responds with an unexpected response
      */
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ConvertCurrencyOption $options = new ConvertCurrencyOption()): float;
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ?ConvertCurrencyOption $options = null): float;
 
     /**
      * Historical rates are available for most currencies all the way back to the year of 1999.
@@ -50,7 +50,7 @@ interface ExchangeRateHostClientInterface
      *
      * @return iterable<string, float> iterable<currency, rates>
      */
-    public function getHistoricalRates(\DateTimeImmutable $date, HistoricalRatesOption $options = new HistoricalRatesOption()): iterable;
+    public function getHistoricalRates(\DateTimeImmutable $date, ?HistoricalRatesOption $options = null): iterable;
 
     /**
      * Timeseries endpoint are for daily historical rates between two dates of your choice,
@@ -63,7 +63,7 @@ interface ExchangeRateHostClientInterface
      *
      * @return iterable<string, iterable<string, float>> iterable<date, iterable<currency, rate>>
      */
-    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, TimeSeriesDataOption $options = new TimeSeriesDataOption()): iterable;
+    public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?TimeSeriesDataOption $options = null): iterable;
 
     /**
      * Using the fluctuation endpoint you will be able to retrieve information about how currencies
@@ -78,7 +78,7 @@ interface ExchangeRateHostClientInterface
      *
      * @return iterable<string, FluctuationData> iterable<currency, FluctuationData>
      */
-    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, FluctuationDataOption $options = new FluctuationDataOption()): iterable;
+    public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?FluctuationDataOption $options = null): iterable;
 
     /**
      * API comes with a constantly updated endpoint returning all available currencies. To access this list,
@@ -88,7 +88,7 @@ interface ExchangeRateHostClientInterface
      *
      * @return iterable<string, SymbolData> iterable<currency, SymbolData>
      */
-    public function getSupportedCurrencies(SupportedSymbolsOption $options = new SupportedSymbolsOption()): iterable;
+    public function getSupportedCurrencies(?SupportedSymbolsOption $options = null): iterable;
 
     /**
      * Our accurate EU VAT information API simplifies in and around the European Union.
@@ -98,5 +98,5 @@ interface ExchangeRateHostClientInterface
      *
      * @return iterable<string, VatRates> iterable<country_code, VatRates>
      */
-    public function getEuVatRates(EuVatRatesOption $options = new EuVatRatesOption()): iterable;
+    public function getEuVatRates(?EuVatRatesOption $options = null): iterable;
 }
