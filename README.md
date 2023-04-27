@@ -72,7 +72,7 @@ exchangerates_host:
         eu_vat_rates_expiration: 'tomorrow 6am'
 ```
 ### Use the API client
-The API client is available through autowiring via `ExchangeRateClientInterface` or via `benjaminmal.exchangerate_bundle.client` service id:
+The API client is available through autowiring via `ExchangeRateHostClientInterface` or via `benjaminmal.exchangerate_host_bundle.client` service id:
 
 ```php
 namespace App\Service;
