@@ -67,7 +67,7 @@ final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPas
             $services
                 ->set('benjaminmal.exchangerate_host_bundle.cacheable_client')
                 ->class(CacheableExchangeRateHostClient::class)
-                ->decorate('benjaminmal.exchangerate_host_bundle.client')
+                ->decorate('benjaminmal.exchangerate_host_bundle.client', priority: 128)
                 ->args([
                     service('.inner'),
                     service('benjaminmal.exchangerate_host_bundle.cache_pool'),
