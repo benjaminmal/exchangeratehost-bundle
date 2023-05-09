@@ -6,6 +6,7 @@ namespace Benjaminmal\ExchangeRateHostBundle\Client;
 
 use Benjaminmal\ExchangeRateHostBundle\Exception\ClientException;
 use Benjaminmal\ExchangeRateHostBundle\Exception\UnexpectedValueException;
+use Benjaminmal\ExchangeRateHostBundle\Exception\UnsuccessfulResponseException;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\EuVatRatesOption;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
@@ -230,6 +231,9 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         }
 
         $data = json_decode((string) $response->getBody(), true, flags: \JSON_THROW_ON_ERROR);
+        if (! array_key_exists('success', $data) || ! $data['success']) {
+            throw new UnsuccessfulResponseException();
+        }
 
         return new \ArrayObject($data);
     }

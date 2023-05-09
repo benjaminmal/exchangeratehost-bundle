@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Benjaminmal\ExchangeRateHostBundle\Client;
 
 use Benjaminmal\ExchangeRateHostBundle\Exception\UnexpectedValueException;
+use Benjaminmal\ExchangeRateHostBundle\Exception\UnsuccessfulResponseException;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\OptionInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -45,9 +46,19 @@ class ExchangeRateHostClientTest extends TestCase
         $this->expectException(UnexpectedValueException::class);
 
         $response = $this->createResponse('unexpected_result_response/' . $file);
+        $client = $this->createClient([$response]);
+        $client->$method(...$this->convertArguments($args));
+    }
 
-        $this->expectException(UnexpectedValueException::class);
+    /**
+     * @test
+     * @dataProvider basicResponseProvider
+     */
+    public function unsuccessfulResults(string $file, string $method, array $args): void
+    {
+        $this->expectException(UnsuccessfulResponseException::class);
 
+        $response = $this->createResponse('unsuccessful_response/' . $file);
         $client = $this->createClient([$response]);
         $client->$method(...$this->convertArguments($args));
     }

@@ -1,0 +1,10 @@
+{
+  "motd": {
+    "msg": "If you or your company use this project or like what we doing, please consider backing us so we can continue maintaining and evolving this project.",
+    "url": "https://exchangerate.host/#/donate"
+  },
+  "success": false,
+  "base": "EUR",
+  "date": "2023-04-24",
+  "rates": {}
+}
