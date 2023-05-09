@@ -34,7 +34,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
     ) {
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): int|float
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -44,7 +44,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
 
         $data = $this->getData($uri);
         $result = $data['result'] ?? throw new \UnexpectedValueException('Cannot found results.');
-        Assert::float($result);
+        Assert::numeric($result);
 
         return $result;
     }

@@ -41,7 +41,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
         });
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): int|float
     {
         $cacheName = $this->createCacheName('convert_currency', ['fromCurrency' => $fromCurrency, 'toCurrency' => $toCurrency, 'amount' => $amount, 'options' => $options]);
 
