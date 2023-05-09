@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Benjaminmal\ExchangeRateHostBundle\Client;
 
 use Benjaminmal\ExchangeRateHostBundle\Exception\ClientException;
+use Benjaminmal\ExchangeRateHostBundle\Exception\UnexpectedValueException;
+use Benjaminmal\ExchangeRateHostBundle\Exception\UnsuccessfulResponseException;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\ConvertCurrencyOption;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\EuVatRatesOption;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\FluctuationDataOption;
@@ -43,7 +45,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $result = $data['result'] ?? throw new \UnexpectedValueException('Cannot found results.');
+        $result = $data['result'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::float($result);
 
         return $result;
@@ -58,8 +60,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new \UnexpectedValueException('Cannot found rates.');
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
+
+        if (empty($rates)) {
+            throw new UnexpectedValueException('Empty rates.');
+        }
 
         return new \ArrayObject($rates);
     }
@@ -72,9 +78,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
             ->withQuery($this->createQuery($options, ['start_date' => $startDate, 'end_date' => $endDate]))
         ;
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new \UnexpectedValueException('Cannot found rates.');
-
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
+
+        if (empty($rates)) {
+            throw new UnexpectedValueException('Empty rates.');
+        }
 
         $array = new \ArrayObject();
         foreach ($rates as $currency => $datum) {
@@ -99,8 +108,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new \UnexpectedValueException('Cannot found rates.');
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
+
+        if (empty($rates)) {
+            throw new UnexpectedValueException('Empty rates.');
+        }
 
         return new \ArrayObject($rates);
     }
@@ -114,8 +127,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new \UnexpectedValueException('Cannot found rates.');
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
+
+        if (empty($rates)) {
+            throw new UnexpectedValueException('Empty rates.');
+        }
 
         return new \ArrayObject($rates);
     }
@@ -129,8 +146,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $symbols = $data['symbols'] ?? throw new \UnexpectedValueException('Cannot found symbols.');
+        $symbols = $data['symbols'] ?? throw new UnexpectedValueException('Cannot found symbols.');
         Assert::isArray($symbols);
+
+        if (empty($symbols)) {
+            throw new UnexpectedValueException('Empty rates.');
+        }
 
         $symbolsDatas = new \ArrayObject();
         foreach ($symbols as $currency => $datum) {
@@ -153,9 +174,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new \UnexpectedValueException('Cannot found rates.');
-
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
+
+        if (empty($rates)) {
+            throw new UnexpectedValueException('Empty rates.');
+        }
 
         $vatRatesData = new \ArrayObject();
         foreach ($rates as $countryCode => $datum) {
@@ -206,7 +230,11 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
             throw new ClientException($response->getReasonPhrase(), $response->getStatusCode());
         }
 
+        /** @var array<string, mixed> $data */
         $data = json_decode((string) $response->getBody(), true, flags: \JSON_THROW_ON_ERROR);
+        if (! array_key_exists('success', $data) || ! $data['success']) {
+            throw new UnsuccessfulResponseException();
+        }
 
         return new \ArrayObject($data);
     }
