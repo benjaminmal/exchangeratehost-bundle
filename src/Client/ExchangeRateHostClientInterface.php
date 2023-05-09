@@ -39,7 +39,7 @@ interface ExchangeRateHostClientInterface
      *
      * @throws ClientException when the server responds with an unexpected response
      */
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): float;
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): int|float;
 
     /**
      * Historical rates are available for most currencies all the way back to the year of 1999.

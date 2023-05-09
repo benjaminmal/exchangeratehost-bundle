@@ -23,6 +23,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use Webmozart\Assert\Assert;
+use Webmozart\Assert\InvalidArgumentException;
 
 final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
 {
@@ -36,7 +37,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
     ) {
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): int|float
     {
         $uri = $this->createUri();
         $uri = $uri
@@ -46,7 +47,12 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
 
         $data = $this->getData($uri);
         $result = $data['result'] ?? throw new UnexpectedValueException('Cannot found results.');
-        Assert::float($result);
+
+        try {
+            Assert::float($result);
+        } catch (InvalidArgumentException) {
+            Assert::integer($result);
+        }
 
         return $result;
     }

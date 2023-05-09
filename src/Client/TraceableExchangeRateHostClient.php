@@ -32,7 +32,7 @@ final class TraceableExchangeRateHostClient implements ExchangeRateHostClientInt
         return $data;
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): int|float
     {
         $this->stopwatch->start('convertCurrency', self::STOPWATCH_CATEGORY);
         $data = $this->decoratedClient->convertCurrency($fromCurrency, $toCurrency, $amount, $options);
