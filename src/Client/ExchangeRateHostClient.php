@@ -34,7 +34,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
     ) {
     }
 
-    public function convertCurrency(string $fromCurrency, string $toCurrency, int $amount, ?ConvertCurrencyOption $options = null): float
+    public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): float
     {
         $uri = $this->createUri();
         $uri = $uri
