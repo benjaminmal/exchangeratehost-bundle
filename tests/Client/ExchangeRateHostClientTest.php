@@ -39,6 +39,7 @@ class ExchangeRateHostClientTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider basicResponseProvider
      */
     public function unexpectedResults(string $file, string $method, array $args): void
@@ -52,6 +53,7 @@ class ExchangeRateHostClientTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider basicResponseProvider
      */
     public function unsuccessfulResults(string $file, string $method, array $args): void

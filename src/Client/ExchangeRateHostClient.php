@@ -60,7 +60,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');;
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
 
         if (empty($rates)) {
@@ -78,7 +78,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
             ->withQuery($this->createQuery($options, ['start_date' => $startDate, 'end_date' => $endDate]))
         ;
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');;
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
 
         if (empty($rates)) {
@@ -108,7 +108,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');;
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
 
         if (empty($rates)) {
@@ -127,7 +127,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');;
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
 
         if (empty($rates)) {
@@ -146,7 +146,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $symbols = $data['symbols'] ?? throw new UnexpectedValueException('Cannot found symbols.');;
+        $symbols = $data['symbols'] ?? throw new UnexpectedValueException('Cannot found symbols.');
         Assert::isArray($symbols);
 
         if (empty($symbols)) {
@@ -174,7 +174,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
         ;
 
         $data = $this->getData($uri);
-        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');;
+        $rates = $data['rates'] ?? throw new UnexpectedValueException('Cannot found results.');
         Assert::isArray($rates);
 
         if (empty($rates)) {
@@ -230,6 +230,7 @@ final class ExchangeRateHostClient implements ExchangeRateHostClientInterface
             throw new ClientException($response->getReasonPhrase(), $response->getStatusCode());
         }
 
+        /** @var array<string, mixed> $data */
         $data = json_decode((string) $response->getBody(), true, flags: \JSON_THROW_ON_ERROR);
         if (! array_key_exists('success', $data) || ! $data['success']) {
             throw new UnsuccessfulResponseException();
