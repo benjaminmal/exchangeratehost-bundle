@@ -1,6 +1,6 @@
 [![Continuous integration](https://github.com/benjaminmal/exchangeratehost-bundle/actions/workflows/ci.yaml/badge.svg)](https://github.com/benjaminmal/exchangeratehost-bundle/actions/workflows/ci.yaml)
 # exchangerate.host bundle
-This bundle allows you to query the great (and free!) [exchangerate.host](https://exchangerate.host) API in a [Symfony](https://symfony.com/) app with ease. It supports [PSR-7](https://www.php-fig.org/psr/psr-7/), [PSR-17](https://www.php-fig.org/psr/psr-17/), [PSR-18](https://www.php-fig.org/psr/psr-18/) and uses the [Symfony Cache](https://symfony.com/doc/current/cache.html) which supports [PSR-6](https://www.php-fig.org/psr/psr-6/) and [PSR-16](https://www.php-fig.org/psr/psr-16/) so you have full control of your dependencies!
+This bundle allows you to query the great (and free!) [exchangerate.host](https://exchangerate.host) API in a [Symfony](https://symfony.com/) app with ease. It supports [PSR-7](https://www.php-fig.org/psr/psr-7/), [PSR-17](https://www.php-fig.org/psr/psr-17/), [PSR-18](https://www.php-fig.org/psr/psr-18/) so you have full control of your dependencies! It uses also the [Symfony Cache](https://symfony.com/doc/current/cache.html).
 
 ⚠️ This bundle is unofficial. I'm not related to [exchangerate.host](https://exchangerate.host).
 
