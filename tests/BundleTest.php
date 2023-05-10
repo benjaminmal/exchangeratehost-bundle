@@ -75,23 +75,42 @@ class BundleTest extends KernelTestCase
 
     /**
      * @test
+     *
+     * @dataProvider cachePoolProvider
+     */
+    public function customCachePools(string $id): void
+    {
+        static::bootKernel(['environment' => 'test_with_custom_cache_pools']);
+
+        $container = self::getContainer();
+        $service = $container->get('test.cache');
+        $service1 = $container->get($id);
+
+        $this->assertSame($service, $service1);
+        $this->assertInstanceOf(CacheInterface::class, $service);
+    }
+
+    /**
+     * @test
      */
     public function bootWithWrongCachePool(): void
     {
         $this->expectException(ServiceNotFoundException::class);
 
         static::bootKernel(['environment' => 'test_with_invalid_cache']);
-        self::getContainer()->get('benjaminmal.exchangerate_host_bundle.cache_pool');
+        self::getContainer()->get('benjaminmal.exchangerate_host_bundle.cache_pool.latest_rates');
     }
 
     /**
      * @test
+     *
+     * @dataProvider cachePoolProvider
      */
-    public function correctCachePoolInContainer(): void
+    public function correctCachePoolInContainer(string $id): void
     {
         $container = self::getContainer();
-        $cachePool = $container->get('exchangerate_host.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE);
-        $cachePool2 = $container->get('benjaminmal.exchangerate_host_bundle.cache_pool', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+        $cachePool = $container->get('exchangeratehost.cache');
+        $cachePool2 = $container->get($id);
 
         $this->assertSame($cachePool, $cachePool2);
     }
@@ -129,7 +148,13 @@ class BundleTest extends KernelTestCase
             ['benjaminmal.exchangerate_host_bundle.http_client', ClientInterface::class, true],
             ['benjaminmal.exchangerate_host_bundle.uri_factory', UriFactoryInterface::class, true],
             ['benjaminmal.exchangerate_host_bundle.request_factory', RequestFactoryInterface::class, true],
-            ['benjaminmal.exchangerate_host_bundle.cache_pool', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.latest_rates', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.convert_currency', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.historical_rates', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.timeseries_rates', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.fluctuation_data', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.supported_currencies', CacheInterface::class, true],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.eu_vat_rates', CacheInterface::class, true],
 
             // Should not exist
             [ExchangeRateHostClientInterface::class, CacheableExchangeRateHostClient::class, false],
@@ -154,9 +179,28 @@ class BundleTest extends KernelTestCase
             [ExchangeRateHostClientInterface::class, CacheableExchangeRateHostClient::class, false],
             ['benjaminmal.exchangerate_host_bundle.client', CacheableExchangeRateHostClient::class, false],
             ['benjaminmal.exchangerate_host_bundle.cacheable_client', CacheableExchangeRateHostClient::class, false],
-            ['benjaminmal.exchangerate_host_bundle.cache_pool', CacheInterface::class, false],
             [ExchangeRateHostClientInterface::class, ExchangeRateHostClient::class, false],
             ['benjaminmal.exchangerate_host_bundle.client', ExchangeRateHostClient::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.latest_rates', CacheInterface::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.convert_currency', CacheInterface::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.historical_rates', CacheInterface::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.timeseries_rates', CacheInterface::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.fluctuation_data', CacheInterface::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.supported_currencies', CacheInterface::class, false],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.eu_vat_rates', CacheInterface::class, false],
+        ];
+    }
+
+    public static function cachePoolProvider(): array
+    {
+        return [
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.latest_rates'],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.convert_currency'],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.historical_rates'],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.timeseries_rates'],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.fluctuation_data'],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.supported_currencies'],
+            ['benjaminmal.exchangerate_host_bundle.cache_pool.eu_vat_rates'],
         ];
     }
 }

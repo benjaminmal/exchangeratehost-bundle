@@ -13,7 +13,6 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPassInterface
@@ -25,44 +24,41 @@ final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPas
         $container->import('../config/services.php');
 
         // Cache
-        if (isset($config['cache']['pool']) && $config['cache']['pool']) {
-            // Expiration
-            if (isset($config['cache']['latest_rates_expiration'])) {
-                $this->validateExpiration($config['cache']['latest_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.latest_rates_expiration', $config['cache']['latest_rates_expiration']);
+        if (! $config['cache']['enabled']) {
+            return;
+        }
+
+        if (isset($config['cache']['pools'])) {
+            $pools = $config['cache']['pools'];
+
+            if (isset($pools['latest_rates']) && $pools['latest_rates']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.latest_rates', $pools['latest_rates']);
             }
 
-            if (isset($config['cache']['convert_currency_expiration'])) {
-                $this->validateExpiration($config['cache']['convert_currency_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.convert_currency_expiration', $config['cache']['convert_currency_expiration']);
+            if (isset($pools['convert_currency']) && $pools['convert_currency']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.convert_currency', $pools['convert_currency']);
             }
 
-            if (isset($config['cache']['historical_rates_expiration'])) {
-                $this->validateExpiration($config['cache']['historical_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.historical_rates_expiration', $config['cache']['historical_rates_expiration']);
+            if (isset($pools['historical_rates']) && $pools['historical_rates']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.historical_rates', $pools['historical_rates']);
             }
 
-            if (isset($config['cache']['timeseries_rates_expiration'])) {
-                $this->validateExpiration($config['cache']['timeseries_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.timeseries_rates_expiration', $config['cache']['timeseries_rates_expiration']);
+            if (isset($pools['timeseries_rates']) && $pools['timeseries_rates']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.timeseries_rates', $pools['timeseries_rates']);
             }
 
-            if (isset($config['cache']['fluctuation_data_expiration'])) {
-                $this->validateExpiration($config['cache']['fluctuation_data_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.fluctuation_data_expiration', $config['cache']['fluctuation_data_expiration']);
+            if (isset($pools['fluctuation_data']) && $pools['fluctuation_data']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.fluctuation_data', $pools['fluctuation_data']);
             }
 
-            if (isset($config['cache']['supported_currencies_expiration'])) {
-                $this->validateExpiration($config['cache']['supported_currencies_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.supported_currencies_expiration', $config['cache']['supported_currencies_expiration']);
+            if (isset($pools['supported_currencies']) && $pools['supported_currencies']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.supported_currencies', $pools['supported_currencies']);
             }
 
-            if (isset($config['cache']['eu_vat_rates_expiration'])) {
-                $this->validateExpiration($config['cache']['eu_vat_rates_expiration']);
-                $builder->setParameter('benjaminmal.exchangerate_host_bundle.cache.eu_vat_rates_expiration', $config['cache']['eu_vat_rates_expiration']);
+            if (isset($pools['eu_vat_rates']) && $pools['eu_vat_rates']) {
+                $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool.eu_vat_rates', $pools['eu_vat_rates']);
             }
 
-            $builder->setAlias('benjaminmal.exchangerate_host_bundle.cache_pool', $config['cache']['pool']);
             $services = $container->services();
             $services
                 ->set('benjaminmal.exchangerate_host_bundle.cacheable_client')
@@ -70,14 +66,13 @@ final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPas
                 ->decorate('benjaminmal.exchangerate_host_bundle.client', priority: 128)
                 ->args([
                     service('.inner'),
-                    service('benjaminmal.exchangerate_host_bundle.cache_pool'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.latest_rates_expiration'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.convert_currency_expiration'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.historical_rates_expiration'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.timeseries_rates_expiration'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.fluctuation_data_expiration'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.supported_currencies_expiration'),
-                    param('benjaminmal.exchangerate_host_bundle.cache.eu_vat_rates_expiration'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.latest_rates'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.convert_currency'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.historical_rates'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.timeseries_rates'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.fluctuation_data'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.supported_currencies'),
+                    service('benjaminmal.exchangerate_host_bundle.cache_pool.eu_vat_rates'),
                 ])
             ;
         }
@@ -112,59 +107,66 @@ final class ExchangeRateHostBundle extends AbstractBundle implements CompilerPas
         }
     }
 
+    public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
+    {
+        $builder->prependExtensionConfig('framework', [
+            'cache' => [
+                'pools' => [
+                    'exchangeratehost.cache' => [
+                        'adapter' => 'cache.app',
+                        'default_lifetime' => 60 * 60 * 24, # 1 day
+                    ],
+                ],
+            ],
+        ]);
+    }
+
     public function configure(DefinitionConfigurator $definition): void
     {
-        $root = $definition->rootNode();
-        $root
+        $definition->rootNode()
             ->children()
                 ->arrayNode('cache')
                     ->children()
-                        ->scalarNode('pool')
-                            ->info('The cache pool to use. Set it to false to deactivate it (not recommended).')
-                            ->defaultValue('cache.app')
+                        ->booleanNode('enabled')
+                            ->info('Enable or disable the cache. Default to true.')
+                            ->defaultTrue()
                         ->end()
-                        ->scalarNode('latest_rates_expiration')
-                            ->info('The latest rates cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
-                        ->end()
-                        ->scalarNode('convert_currency_expiration')
-                            ->info('The convert currency cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
-                        ->end()
-                        ->scalarNode('historical_rates_expiration')
-                            ->info('The historical rates cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
-                        ->end()
-                        ->scalarNode('timeseries_rates_expiration')
-                            ->info('The timeseries rates cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
-                        ->end()
-                        ->scalarNode('fluctuation_data_expiration')
-                            ->info('The fluctuation data cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
-                        ->end()
-                        ->scalarNode('supported_currencies_expiration')
-                            ->info('The supported currencies cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
-                        ->end()
-                        ->scalarNode('eu_vat_rates_expiration')
-                            ->info('The eu vat rates cache expiration. Integer for seconds, string for a valid date')
-                            ->defaultValue('tomorrow 6am')
+                        ->arrayNode('pools')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('latest_rates')
+                                    ->info('The latest rates cache pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                                ->scalarNode('convert_currency')
+                                    ->info('The convert currency pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                                ->scalarNode('historical_rates')
+                                    ->info('The historical rates pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                                ->scalarNode('timeseries_rates')
+                                    ->info('The timeseries rates pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                                ->scalarNode('fluctuation_data')
+                                    ->info('The fluctuation data pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                                ->scalarNode('supported_currencies')
+                                    ->info('The supported currencies pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                                ->scalarNode('eu_vat_rates')
+                                    ->info('The eu vat rates pool. False to deactivate it.')
+                                    ->defaultValue('exchangeratehost.cache')
+                                ->end()
+                            ->end()
                         ->end()
                     ->end()
                 ->end()
             ->end()
         ;
-    }
-
-    private function validateExpiration(mixed $expiration): void
-    {
-        if (! is_int($expiration) && ! is_string($expiration)) {
-            throw new \RuntimeException('Expiration must be a date (string) or a second (integer).');
-        }
-
-        if (is_string($expiration) && ! strtotime($expiration)) {
-            throw new \RuntimeException('The expiration date (string) is not valid.');
-        }
     }
 }

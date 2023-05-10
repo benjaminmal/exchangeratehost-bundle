@@ -2,24 +2,25 @@ exchangerate_host:
     cache:
         # Test default values
 
-when@test:
+when@test_with_custom_cache_pools:
     exchangerate_host:
         cache:
-            pool: 'exchangerate_host.cache'
-            latest_rates_expiration: 'tomorrow 6am'
-            convert_currency_expiration: 'tomorrow 6am'
-            historical_rates_expiration: 86400
-            timeseries_rates_expiration: 'tomorrow 6am'
-            fluctuation_data_expiration: 86400
-            supported_currencies_expiration: '+2days'
-            eu_vat_rates_expiration: 'tomorrow 6am'
+            pools:
+                latest_rates: 'test.cache'
+                convert_currency: 'test.cache'
+                historical_rates: 'test.cache'
+                timeseries_rates: 'test.cache'
+                fluctuation_data: 'test.cache'
+                supported_currencies: 'test.cache'
+                eu_vat_rates: 'test.cache'
 
 when@test_with_no_cache:
     exchangerate_host:
         cache:
-            pool: false
+            enabled: false
 
 when@test_with_invalid_cache:
     exchangerate_host:
         cache:
-            pool: 'wrong_cache'
+            pools:
+                latest_rates: 'wrong_cache'
