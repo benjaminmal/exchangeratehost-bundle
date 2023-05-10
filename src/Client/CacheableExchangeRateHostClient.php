@@ -13,107 +13,75 @@ use Benjaminmal\ExchangeRateHostBundle\Model\Option\OptionInterface;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\SupportedSymbolsOption;
 use Benjaminmal\ExchangeRateHostBundle\Model\Option\TimeSeriesDataOption;
 use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 
 final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInterface
 {
     public function __construct(
         private readonly ExchangeRateHostClientInterface $decoratedClient,
-        private readonly CacheInterface $cache,
-        private readonly int|string $latestRatesExpiration,
-        private readonly int|string $convertCurrencyExpiration,
-        private readonly int|string $historicalRatesExpiration,
-        private readonly int|string $timeseriesRatesExpiration,
-        private readonly int|string $fluctuationDataExpiration,
-        private readonly int|string $supportedCurrenciesExpiration,
-        private readonly int|string $euVatRatesExpiration,
+        private readonly CacheInterface $latestRatesPool,
+        private readonly CacheInterface $convertCurrencyPool,
+        private readonly CacheInterface $historicalRatesPool,
+        private readonly CacheInterface $timeseriesRatesPool,
+        private readonly CacheInterface $fluctuationDataPool,
+        private readonly CacheInterface $supportedCurrenciesPool,
+        private readonly CacheInterface $euVatRatesPool,
     ) {
     }
 
     public function getLatestRates(?LatestRatesOption $options = null): iterable
     {
-        $cacheName = $this->createCacheName('latest_rates', ['options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($options): iterable {
-            $this->setExpiration($item, $this->latestRatesExpiration);
-
-            return $this->decoratedClient->getLatestRates($options);
-        });
+        return $this->latestRatesPool->get(
+            $this->createCacheName('latest_rates', ['options' => $options]),
+            fn (): iterable => $this->decoratedClient->getLatestRates($options)
+        );
     }
 
     public function convertCurrency(string $fromCurrency, string $toCurrency, int|float $amount, ?ConvertCurrencyOption $options = null): int|float
     {
-        $cacheName = $this->createCacheName('convert_currency', ['fromCurrency' => $fromCurrency, 'toCurrency' => $toCurrency, 'amount' => $amount, 'options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($fromCurrency, $toCurrency, $amount, $options): float {
-            $this->setExpiration($item, $this->convertCurrencyExpiration);
-
-            return $this->decoratedClient->convertCurrency($fromCurrency, $toCurrency, $amount, $options);
-        });
+        return $this->convertCurrencyPool->get(
+            $this->createCacheName('convert_currency', ['fromCurrency' => $fromCurrency, 'toCurrency' => $toCurrency, 'amount' => $amount, 'options' => $options]),
+            fn (): int|float => $this->decoratedClient->convertCurrency($fromCurrency, $toCurrency, $amount, $options)
+        );
     }
 
     public function getHistoricalRates(\DateTimeImmutable $date, ?HistoricalRatesOption $options = null): iterable
     {
-        $cacheName = $this->createCacheName('historical_rates', ['date' => $date, 'options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($date, $options): iterable {
-            $this->setExpiration($item, $this->historicalRatesExpiration);
-
-            return $this->decoratedClient->getHistoricalRates($date, $options);
-        });
+        return $this->historicalRatesPool->get(
+            $this->createCacheName('historical_rates', ['date' => $date, 'options' => $options]),
+            fn (): iterable => $this->decoratedClient->getHistoricalRates($date, $options)
+        );
     }
 
     public function getTimeSeriesRates(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?TimeSeriesDataOption $options = null): iterable
     {
-        $cacheName = $this->createCacheName('timeseries_rates', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($startDate, $endDate, $options): iterable {
-            $this->setExpiration($item, $this->timeseriesRatesExpiration);
-
-            return $this->decoratedClient->getTimeSeriesRates($startDate, $endDate, $options);
-        });
+        return $this->timeseriesRatesPool->get(
+            $this->createCacheName('timeseries_rates', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]),
+            fn (): iterable => $this->decoratedClient->getTimeSeriesRates($startDate, $endDate, $options)
+        );
     }
 
     public function getFluctuationData(\DateTimeImmutable $startDate, \DateTimeImmutable $endDate, ?FluctuationDataOption $options = null): iterable
     {
-        $cacheName = $this->createCacheName('fluctuation_data', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($startDate, $endDate, $options): iterable {
-            $this->setExpiration($item, $this->fluctuationDataExpiration);
-
-            return $this->decoratedClient->getFluctuationData($startDate, $endDate, $options);
-        });
+        return $this->fluctuationDataPool->get(
+            $this->createCacheName('fluctuation_data', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]),
+            fn (): iterable => $this->decoratedClient->getFluctuationData($startDate, $endDate, $options)
+        );
     }
 
     public function getSupportedCurrencies(?SupportedSymbolsOption $options = null): iterable
     {
-        $cacheName = $this->createCacheName('supported_currencies', ['options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($options): iterable {
-            $this->setExpiration($item, $this->supportedCurrenciesExpiration);
-
-            return $this->decoratedClient->getSupportedCurrencies($options);
-        });
+        return $this->supportedCurrenciesPool->get(
+            $this->createCacheName('supported_currencies', ['options' => $options]),
+            fn (): iterable => $this->decoratedClient->getSupportedCurrencies($options)
+        );
     }
 
     public function getEuVatRates(?EuVatRatesOption $options = null): iterable
     {
-        $cacheName = $this->createCacheName('eu_vat_rates', ['options' => $options]);
-
-        return $this->cache->get($cacheName, function (ItemInterface $item) use ($options): iterable {
-            $this->setExpiration($item, $this->euVatRatesExpiration);
-
-            return $this->decoratedClient->getEuVatRates($options);
-        });
-    }
-
-    private function setExpiration(ItemInterface $item, int|string $expiration): void
-    {
-        if (is_string($expiration)) {
-            $item->expiresAt(new \DateTimeImmutable($expiration, new \DateTimeZone('UTC')));
-        } else {
-            $item->expiresAfter($expiration);
-        }
+        return $this->euVatRatesPool->get(
+            $this->createCacheName('eu_vat_rates', ['options' => $options]),
+            fn (): iterable => $this->decoratedClient->getEuVatRates($options)
+        );
     }
 
     /**
@@ -133,8 +101,6 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
             $parameters,
         );
 
-        $strParameters = md5(serialize($parameters));
-
-        return implode('_', [$prefix, $strParameters]);
+        return implode('_', [$prefix, md5(serialize($parameters))]);
     }
 }

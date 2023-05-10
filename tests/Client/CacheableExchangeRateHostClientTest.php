@@ -93,13 +93,12 @@ class CacheableExchangeRateHostClientTest extends TestCase
         return new CacheableExchangeRateHostClient(
             $this->createClient($responses),
             $cache,
-            'tomorrow 9am',
-            86400,
-            'tomorrow 9am',
-            'tomorrow 9am',
-            3600,
-            'tomorrow 9am',
-            'tomorrow 9am',
+            $cache,
+            $cache,
+            $cache,
+            $cache,
+            $cache,
+            $cache,
         );
     }
 }

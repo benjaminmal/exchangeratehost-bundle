@@ -8,7 +8,11 @@ This bundle allows you to query the great (and free!) [exchangerate.host](https:
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Getting started](#getting-started)
+    - [Config](#config)
     - [Use the API client](#use-the-api-client)
+- [Cache](#cache) 
+    - [Customizing the cache](#customizing-the-cache)
+    - [Clearing the cache](#clearing-the-cache)
 - [What's more](#whats-more)
 
 ## Requirements
@@ -53,24 +57,27 @@ services:
 
 ## Getting started
 ### Config
-Here are the default values:
+The following file is optional but here are the default config values:
 ```yaml
 # exchangerate_host.yaml
 exchangerate_host:
     cache:
-        # Set the cache pool. Optional. Set it to false if you don't want to use cache (not recommended).
-        pool: 'cache.app'
+        # Enabled / disable caching. Optional. Disabling it is not recommended 
+        # (HTTP request can be long, rate limit could be hit).
+        enabled: true
         
-        # Data cache expiration. Optional. Could be an integer (seconds) or a string (date used 
-        # in DateTime::__construct(), e.g '+3days', UTC timezone)
-        latest_rates_expiration: 'tomorrow 6am'
-        convert_currency_expiration: 'tomorrow 6am'
-        historical_rates_expiration: 'tomorrow 6am'
-        timeseries_rates_expiration: 'tomorrow 6am'
-        fluctuation_data_expiration: 'tomorrow 6am'
-        supported_currencies_expiration: 'tomorrow 6am'
-        eu_vat_rates_expiration: 'tomorrow 6am'
+        # Set the cache pool. Optional. Set it to false if you don't want to use 
+        # this specific cache pool. Default to "exchangeratehost.cache", which extends the default "app.cache".
+        pools:
+            latest_rates: 'exchangeratehost.cache'
+            convert_currency: 'exchangeratehost.cache'
+            historical_rates: 'exchangeratehost.cache'
+            timeseries_rates: 'exchangeratehost.cache'
+            fluctuation_data: 'exchangeratehost.cache'
+            supported_currencies: 'exchangeratehost.cache'
+            eu_vat_rates: 'exchangeratehost.cache'
 ```
+
 ### Use the API client
 The API client is available through autowiring via `ExchangeRateHostClientInterface` or via `benjaminmal.exchangerate_host_bundle.client` service id:
 
@@ -236,6 +243,42 @@ class MyService
     }
 }
 ```
+
+## Cache
+### Customizing the cache
+You want to change the default cache behavior? Let's do that:
+```yaml
+# exchangerate_host.yaml
+exchangerate_host:
+    cache:
+        pools:
+            latest_rates: 'my_new_pool.cache'
+```
+```yaml
+# cache.yaml
+framework:
+    cache:
+        pools:
+            my_new_pool.cache:
+                adapter: exchangeratehost.cache # extending the default bundle cache
+                defaultLifetime: 3600 # 1 hour
+                # ... your custom config
+```
+
+### Clearing the cache
+If you are using the cache (which is highly recommended) you may want to clear the cache at each new entry of the exchangerate.host API. So you need to set a cron job on your server just after 00:05am GMT everyday (found in the [FAQ](https://exchangerate.host/#/faq)).
+
+The cron command:
+```
+6 0 * * *
+```
+⚠️ Cron generally works on local time! Adapt it to the timezone of your servers.
+
+The command:
+```console
+php path/to/my_project/bin/console cache:pool:clear exchangeratehost.cache
+```
+If you changed the default cache pool, use them instead of `exchangeratehost.cache`!
 
 ## What's more?
 - [exchangerate.host](https://exchangerate.host/#/#docs) for full documentations about the exchangerate.host API.

@@ -2,11 +2,11 @@ framework:
     cache:
         # Unique name of your app: used to compute stable namespaces for cache keys.
         prefix_seed: benjaminmal/app
+        app: cache.adapter.array
 
-when@test:
+when@test_with_custom_cache_pools:
     framework:
         cache:
-            app: cache.adapter.array
             pools:
-                exchangerate_host.cache:
-                    adapter: cache.app
+                test.cache:
+                    adapter: exchangeratehost.cache
