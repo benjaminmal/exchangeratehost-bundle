@@ -35,7 +35,7 @@ interface ExchangeRateHostClientInterface
      *
      * @param string $fromCurrency [required] The three-letter currency code of the currency you would like to convert from
      * @param string $toCurrency [required] The three-letter currency code of the currency you would like to convert to
-     * @param int $amount [required] The amount to be converted
+     * @param int|float $amount [required] The amount to be converted
      *
      * @throws ClientException when the server responds with an unexpected response
      */

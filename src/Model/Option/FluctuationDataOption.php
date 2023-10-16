@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Benjaminmal\ExchangeRateHostBundle\Model\Option;
 
-use Symfony\Component\Validator\Constraints\Currency;
-
 class FluctuationDataOption implements OptionInterface
 {
     public function __construct(
