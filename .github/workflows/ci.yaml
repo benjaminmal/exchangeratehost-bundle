@@ -47,11 +47,11 @@ jobs:
             -   name: Cache Composer
                 uses: actions/cache@v3
                 with:
-                  path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-php-${{ matrix.php }}-symfony-${{ matrix.symfony }}-lowest-${{ matrix.lowest }}-composer-${{ hashFiles('**/composer.json') }}
-                  restore-keys: |
-                    ${{ runner.os }}-php-${{ matrix.php }}-symfony-${{ matrix.symfony }}-lowest-${{ matrix.lowest }}-composer-
-                    ${{ runner.os }}-php-
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ runner.os }}-php-${{ matrix.php }}-symfony-${{ matrix.symfony }}-lowest-${{ matrix.lowest }}-composer-${{ hashFiles('**/composer.json') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-${{ matrix.php }}-symfony-${{ matrix.symfony }}-lowest-${{ matrix.lowest }}-composer-
+                        ${{ runner.os }}-php-
 
             -   name: Install dependencies
                 run: composer update ${{ matrix.lowest }} --no-interaction --no-progress --prefer-dist --ansi --verbose --no-scripts

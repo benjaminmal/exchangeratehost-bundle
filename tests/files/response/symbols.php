@@ -7,686 +7,686 @@ use Benjaminmal\ExchangeRateHostBundle\Model\Output\SymbolData;
 return [
     'AED' => new SymbolData(
         description: 'United Arab Emirates Dirham',
-        code: 'AED'
+        code: 'AED',
     ),
     'AFN' => new SymbolData(
         description: 'Afghan Afghani',
-        code: 'AFN'
+        code: 'AFN',
     ),
     'ALL' => new SymbolData(
         description: 'Albanian Lek',
-        code: 'ALL'
+        code: 'ALL',
     ),
     'AMD' => new SymbolData(
         description: 'Armenian Dram',
-        code: 'AMD'
+        code: 'AMD',
     ),
     'ANG' => new SymbolData(
         description: 'Netherlands Antillean Guilder',
-        code: 'ANG'
+        code: 'ANG',
     ),
     'AOA' => new SymbolData(
         description: 'Angolan Kwanza',
-        code: 'AOA'
+        code: 'AOA',
     ),
     'ARS' => new SymbolData(
         description: 'Argentine Peso',
-        code: 'ARS'
+        code: 'ARS',
     ),
     'AUD' => new SymbolData(
         description: 'Australian Dollar',
-        code: 'AUD'
+        code: 'AUD',
     ),
     'AWG' => new SymbolData(
         description: 'Aruban Florin',
-        code: 'AWG'
+        code: 'AWG',
     ),
     'AZN' => new SymbolData(
         description: 'Azerbaijani Manat',
-        code: 'AZN'
+        code: 'AZN',
     ),
     'BAM' => new SymbolData(
         description: 'Bosnia-Herzegovina Convertible Mark',
-        code: 'BAM'
+        code: 'BAM',
     ),
     'BBD' => new SymbolData(
         description: 'Barbadian Dollar',
-        code: 'BBD'
+        code: 'BBD',
     ),
     'BDT' => new SymbolData(
         description: 'Bangladeshi Taka',
-        code: 'BDT'
+        code: 'BDT',
     ),
     'BGN' => new SymbolData(
         description: 'Bulgarian Lev',
-        code: 'BGN'
+        code: 'BGN',
     ),
     'BHD' => new SymbolData(
         description: 'Bahraini Dinar',
-        code: 'BHD'
+        code: 'BHD',
     ),
     'BIF' => new SymbolData(
         description: 'Burundian Franc',
-        code: 'BIF'
+        code: 'BIF',
     ),
     'BMD' => new SymbolData(
         description: 'Bermudan Dollar',
-        code: 'BMD'
+        code: 'BMD',
     ),
     'BND' => new SymbolData(
         description: 'Brunei Dollar',
-        code: 'BND'
+        code: 'BND',
     ),
     'BOB' => new SymbolData(
         description: 'Bolivian Boliviano',
-        code: 'BOB'
+        code: 'BOB',
     ),
     'BRL' => new SymbolData(
         description: 'Brazilian Real',
-        code: 'BRL'
+        code: 'BRL',
     ),
     'BSD' => new SymbolData(
         description: 'Bahamian Dollar',
-        code: 'BSD'
+        code: 'BSD',
     ),
     'BTC' => new SymbolData(
         description: 'Bitcoin',
-        code: 'BTC'
+        code: 'BTC',
     ),
     'BTN' => new SymbolData(
         description: 'Bhutanese Ngultrum',
-        code: 'BTN'
+        code: 'BTN',
     ),
     'BWP' => new SymbolData(
         description: 'Botswanan Pula',
-        code: 'BWP'
+        code: 'BWP',
     ),
     'BYN' => new SymbolData(
         description: 'Belarusian Ruble',
-        code: 'BYN'
+        code: 'BYN',
     ),
     'BZD' => new SymbolData(
         description: 'Belize Dollar',
-        code: 'BZD'
+        code: 'BZD',
     ),
     'CAD' => new SymbolData(
         description: 'Canadian Dollar',
-        code: 'CAD'
+        code: 'CAD',
     ),
     'CDF' => new SymbolData(
         description: 'Congolese Franc',
-        code: 'CDF'
+        code: 'CDF',
     ),
     'CHF' => new SymbolData(
         description: 'Swiss Franc',
-        code: 'CHF'
+        code: 'CHF',
     ),
     'CLF' => new SymbolData(
         description: 'Chilean Unit of Account (UF)',
-        code: 'CLF'
+        code: 'CLF',
     ),
     'CLP' => new SymbolData(
         description: 'Chilean Peso',
-        code: 'CLP'
+        code: 'CLP',
     ),
     'CNH' => new SymbolData(
         description: 'Chinese Yuan (Offshore)',
-        code: 'CNH'
+        code: 'CNH',
     ),
     'CNY' => new SymbolData(
         description: 'Chinese Yuan',
-        code: 'CNY'
+        code: 'CNY',
     ),
     'COP' => new SymbolData(
         description: 'Colombian Peso',
-        code: 'COP'
+        code: 'COP',
     ),
     'CRC' => new SymbolData(
         description: 'Costa Rican Colón',
-        code: 'CRC'
+        code: 'CRC',
     ),
     'CUC' => new SymbolData(
         description: 'Cuban Convertible Peso',
-        code: 'CUC'
+        code: 'CUC',
     ),
     'CUP' => new SymbolData(
         description: 'Cuban Peso',
-        code: 'CUP'
+        code: 'CUP',
     ),
     'CVE' => new SymbolData(
         description: 'Cape Verdean Escudo',
-        code: 'CVE'
+        code: 'CVE',
     ),
     'CZK' => new SymbolData(
         description: 'Czech Republic Koruna',
-        code: 'CZK'
+        code: 'CZK',
     ),
     'DJF' => new SymbolData(
         description: 'Djiboutian Franc',
-        code: 'DJF'
+        code: 'DJF',
     ),
     'DKK' => new SymbolData(
         description: 'Danish Krone',
-        code: 'DKK'
+        code: 'DKK',
     ),
     'DOP' => new SymbolData(
         description: 'Dominican Peso',
-        code: 'DOP'
+        code: 'DOP',
     ),
     'DZD' => new SymbolData(
         description: 'Algerian Dinar',
-        code: 'DZD'
+        code: 'DZD',
     ),
     'EGP' => new SymbolData(
         description: 'Egyptian Pound',
-        code: 'EGP'
+        code: 'EGP',
     ),
     'ERN' => new SymbolData(
         description: 'Eritrean Nakfa',
-        code: 'ERN'
+        code: 'ERN',
     ),
     'ETB' => new SymbolData(
         description: 'Ethiopian Birr',
-        code: 'ETB'
+        code: 'ETB',
     ),
     'EUR' => new SymbolData(
         description: 'Euro',
-        code: 'EUR'
+        code: 'EUR',
     ),
     'FJD' => new SymbolData(
         description: 'Fijian Dollar',
-        code: 'FJD'
+        code: 'FJD',
     ),
     'FKP' => new SymbolData(
         description: 'Falkland Islands Pound',
-        code: 'FKP'
+        code: 'FKP',
     ),
     'GBP' => new SymbolData(
         description: 'British Pound Sterling',
-        code: 'GBP'
+        code: 'GBP',
     ),
     'GEL' => new SymbolData(
         description: 'Georgian Lari',
-        code: 'GEL'
+        code: 'GEL',
     ),
     'GGP' => new SymbolData(
         description: 'Guernsey Pound',
-        code: 'GGP'
+        code: 'GGP',
     ),
     'GHS' => new SymbolData(
         description: 'Ghanaian Cedi',
-        code: 'GHS'
+        code: 'GHS',
     ),
     'GIP' => new SymbolData(
         description: 'Gibraltar Pound',
-        code: 'GIP'
+        code: 'GIP',
     ),
     'GMD' => new SymbolData(
         description: 'Gambian Dalasi',
-        code: 'GMD'
+        code: 'GMD',
     ),
     'GNF' => new SymbolData(
         description: 'Guinean Franc',
-        code: 'GNF'
+        code: 'GNF',
     ),
     'GTQ' => new SymbolData(
         description: 'Guatemalan Quetzal',
-        code: 'GTQ'
+        code: 'GTQ',
     ),
     'GYD' => new SymbolData(
         description: 'Guyanaese Dollar',
-        code: 'GYD'
+        code: 'GYD',
     ),
     'HKD' => new SymbolData(
         description: 'Hong Kong Dollar',
-        code: 'HKD'
+        code: 'HKD',
     ),
     'HNL' => new SymbolData(
         description: 'Honduran Lempira',
-        code: 'HNL'
+        code: 'HNL',
     ),
     'HRK' => new SymbolData(
         description: 'Croatian Kuna',
-        code: 'HRK'
+        code: 'HRK',
     ),
     'HTG' => new SymbolData(
         description: 'Haitian Gourde',
-        code: 'HTG'
+        code: 'HTG',
     ),
     'HUF' => new SymbolData(
         description: 'Hungarian Forint',
-        code: 'HUF'
+        code: 'HUF',
     ),
     'IDR' => new SymbolData(
         description: 'Indonesian Rupiah',
-        code: 'IDR'
+        code: 'IDR',
     ),
     'ILS' => new SymbolData(
         description: 'Israeli New Sheqel',
-        code: 'ILS'
+        code: 'ILS',
     ),
     'IMP' => new SymbolData(
         description: 'Manx pound',
-        code: 'IMP'
+        code: 'IMP',
     ),
     'INR' => new SymbolData(
         description: 'Indian Rupee',
-        code: 'INR'
+        code: 'INR',
     ),
     'IQD' => new SymbolData(
         description: 'Iraqi Dinar',
-        code: 'IQD'
+        code: 'IQD',
     ),
     'IRR' => new SymbolData(
         description: 'Iranian Rial',
-        code: 'IRR'
+        code: 'IRR',
     ),
     'ISK' => new SymbolData(
         description: 'Icelandic Króna',
-        code: 'ISK'
+        code: 'ISK',
     ),
     'JEP' => new SymbolData(
         description: 'Jersey Pound',
-        code: 'JEP'
+        code: 'JEP',
     ),
     'JMD' => new SymbolData(
         description: 'Jamaican Dollar',
-        code: 'JMD'
+        code: 'JMD',
     ),
     'JOD' => new SymbolData(
         description: 'Jordanian Dinar',
-        code: 'JOD'
+        code: 'JOD',
     ),
     'JPY' => new SymbolData(
         description: 'Japanese Yen',
-        code: 'JPY'
+        code: 'JPY',
     ),
     'KES' => new SymbolData(
         description: 'Kenyan Shilling',
-        code: 'KES'
+        code: 'KES',
     ),
     'KGS' => new SymbolData(
         description: 'Kyrgystani Som',
-        code: 'KGS'
+        code: 'KGS',
     ),
     'KHR' => new SymbolData(
         description: 'Cambodian Riel',
-        code: 'KHR'
+        code: 'KHR',
     ),
     'KMF' => new SymbolData(
         description: 'Comorian Franc',
-        code: 'KMF'
+        code: 'KMF',
     ),
     'KPW' => new SymbolData(
         description: 'North Korean Won',
-        code: 'KPW'
+        code: 'KPW',
     ),
     'KRW' => new SymbolData(
         description: 'South Korean Won',
-        code: 'KRW'
+        code: 'KRW',
     ),
     'KWD' => new SymbolData(
         description: 'Kuwaiti Dinar',
-        code: 'KWD'
+        code: 'KWD',
     ),
     'KYD' => new SymbolData(
         description: 'Cayman Islands Dollar',
-        code: 'KYD'
+        code: 'KYD',
     ),
     'KZT' => new SymbolData(
         description: 'Kazakhstani Tenge',
-        code: 'KZT'
+        code: 'KZT',
     ),
     'LAK' => new SymbolData(
         description: 'Laotian Kip',
-        code: 'LAK'
+        code: 'LAK',
     ),
     'LBP' => new SymbolData(
         description: 'Lebanese Pound',
-        code: 'LBP'
+        code: 'LBP',
     ),
     'LKR' => new SymbolData(
         description: 'Sri Lankan Rupee',
-        code: 'LKR'
+        code: 'LKR',
     ),
     'LRD' => new SymbolData(
         description: 'Liberian Dollar',
-        code: 'LRD'
+        code: 'LRD',
     ),
     'LSL' => new SymbolData(
         description: 'Lesotho Loti',
-        code: 'LSL'
+        code: 'LSL',
     ),
     'LYD' => new SymbolData(
         description: 'Libyan Dinar',
-        code: 'LYD'
+        code: 'LYD',
     ),
     'MAD' => new SymbolData(
         description: 'Moroccan Dirham',
-        code: 'MAD'
+        code: 'MAD',
     ),
     'MDL' => new SymbolData(
         description: 'Moldovan Leu',
-        code: 'MDL'
+        code: 'MDL',
     ),
     'MGA' => new SymbolData(
         description: 'Malagasy Ariary',
-        code: 'MGA'
+        code: 'MGA',
     ),
     'MKD' => new SymbolData(
         description: 'Macedonian Denar',
-        code: 'MKD'
+        code: 'MKD',
     ),
     'MMK' => new SymbolData(
         description: 'Myanma Kyat',
-        code: 'MMK'
+        code: 'MMK',
     ),
     'MNT' => new SymbolData(
         description: 'Mongolian Tugrik',
-        code: 'MNT'
+        code: 'MNT',
     ),
     'MOP' => new SymbolData(
         description: 'Macanese Pataca',
-        code: 'MOP'
+        code: 'MOP',
     ),
     'MRO' => new SymbolData(
         description: 'Mauritanian Ouguiya (pre-2018)',
-        code: 'MRO'
+        code: 'MRO',
     ),
     'MRU' => new SymbolData(
         description: 'Mauritanian Ouguiya',
-        code: 'MRU'
+        code: 'MRU',
     ),
     'MUR' => new SymbolData(
         description: 'Mauritian Rupee',
-        code: 'MUR'
+        code: 'MUR',
     ),
     'MVR' => new SymbolData(
         description: 'Maldivian Rufiyaa',
-        code: 'MVR'
+        code: 'MVR',
     ),
     'MWK' => new SymbolData(
         description: 'Malawian Kwacha',
-        code: 'MWK'
+        code: 'MWK',
     ),
     'MXN' => new SymbolData(
         description: 'Mexican Peso',
-        code: 'MXN'
+        code: 'MXN',
     ),
     'MYR' => new SymbolData(
         description: 'Malaysian Ringgit',
-        code: 'MYR'
+        code: 'MYR',
     ),
     'MZN' => new SymbolData(
         description: 'Mozambican Metical',
-        code: 'MZN'
+        code: 'MZN',
     ),
     'NAD' => new SymbolData(
         description: 'Namibian Dollar',
-        code: 'NAD'
+        code: 'NAD',
     ),
     'NGN' => new SymbolData(
         description: 'Nigerian Naira',
-        code: 'NGN'
+        code: 'NGN',
     ),
     'NIO' => new SymbolData(
         description: 'Nicaraguan Córdoba',
-        code: 'NIO'
+        code: 'NIO',
     ),
     'NOK' => new SymbolData(
         description: 'Norwegian Krone',
-        code: 'NOK'
+        code: 'NOK',
     ),
     'NPR' => new SymbolData(
         description: 'Nepalese Rupee',
-        code: 'NPR'
+        code: 'NPR',
     ),
     'NZD' => new SymbolData(
         description: 'New Zealand Dollar',
-        code: 'NZD'
+        code: 'NZD',
     ),
     'OMR' => new SymbolData(
         description: 'Omani Rial',
-        code: 'OMR'
+        code: 'OMR',
     ),
     'PAB' => new SymbolData(
         description: 'Panamanian Balboa',
-        code: 'PAB'
+        code: 'PAB',
     ),
     'PEN' => new SymbolData(
         description: 'Peruvian Nuevo Sol',
-        code: 'PEN'
+        code: 'PEN',
     ),
     'PGK' => new SymbolData(
         description: 'Papua New Guinean Kina',
-        code: 'PGK'
+        code: 'PGK',
     ),
     'PHP' => new SymbolData(
         description: 'Philippine Peso',
-        code: 'PHP'
+        code: 'PHP',
     ),
     'PKR' => new SymbolData(
         description: 'Pakistani Rupee',
-        code: 'PKR'
+        code: 'PKR',
     ),
     'PLN' => new SymbolData(
         description: 'Polish Zloty',
-        code: 'PLN'
+        code: 'PLN',
     ),
     'PYG' => new SymbolData(
         description: 'Paraguayan Guarani',
-        code: 'PYG'
+        code: 'PYG',
     ),
     'QAR' => new SymbolData(
         description: 'Qatari Rial',
-        code: 'QAR'
+        code: 'QAR',
     ),
     'RON' => new SymbolData(
         description: 'Romanian Leu',
-        code: 'RON'
+        code: 'RON',
     ),
     'RSD' => new SymbolData(
         description: 'Serbian Dinar',
-        code: 'RSD'
+        code: 'RSD',
     ),
     'RUB' => new SymbolData(
         description: 'Russian Ruble',
-        code: 'RUB'
+        code: 'RUB',
     ),
     'RWF' => new SymbolData(
         description: 'Rwandan Franc',
-        code: 'RWF'
+        code: 'RWF',
     ),
     'SAR' => new SymbolData(
         description: 'Saudi Riyal',
-        code: 'SAR'
+        code: 'SAR',
     ),
     'SBD' => new SymbolData(
         description: 'Solomon Islands Dollar',
-        code: 'SBD'
+        code: 'SBD',
     ),
     'SCR' => new SymbolData(
         description: 'Seychellois Rupee',
-        code: 'SCR'
+        code: 'SCR',
     ),
     'SDG' => new SymbolData(
         description: 'Sudanese Pound',
-        code: 'SDG'
+        code: 'SDG',
     ),
     'SEK' => new SymbolData(
         description: 'Swedish Krona',
-        code: 'SEK'
+        code: 'SEK',
     ),
     'SGD' => new SymbolData(
         description: 'Singapore Dollar',
-        code: 'SGD'
+        code: 'SGD',
     ),
     'SHP' => new SymbolData(
         description: 'Saint Helena Pound',
-        code: 'SHP'
+        code: 'SHP',
     ),
     'SLL' => new SymbolData(
         description: 'Sierra Leonean Leone',
-        code: 'SLL'
+        code: 'SLL',
     ),
     'SOS' => new SymbolData(
         description: 'Somali Shilling',
-        code: 'SOS'
+        code: 'SOS',
     ),
     'SRD' => new SymbolData(
         description: 'Surinamese Dollar',
-        code: 'SRD'
+        code: 'SRD',
     ),
     'SSP' => new SymbolData(
         description: 'South Sudanese Pound',
-        code: 'SSP'
+        code: 'SSP',
     ),
     'STD' => new SymbolData(
         description: 'São Tomé and Príncipe Dobra (pre-2018)',
-        code: 'STD'
+        code: 'STD',
     ),
     'STN' => new SymbolData(
         description: 'São Tomé and Príncipe Dobra',
-        code: 'STN'
+        code: 'STN',
     ),
     'SVC' => new SymbolData(
         description: 'Salvadoran Colón',
-        code: 'SVC'
+        code: 'SVC',
     ),
     'SYP' => new SymbolData(
         description: 'Syrian Pound',
-        code: 'SYP'
+        code: 'SYP',
     ),
     'SZL' => new SymbolData(
         description: 'Swazi Lilangeni',
-        code: 'SZL'
+        code: 'SZL',
     ),
     'THB' => new SymbolData(
         description: 'Thai Baht',
-        code: 'THB'
+        code: 'THB',
     ),
     'TJS' => new SymbolData(
         description: 'Tajikistani Somoni',
-        code: 'TJS'
+        code: 'TJS',
     ),
     'TMT' => new SymbolData(
         description: 'Turkmenistani Manat',
-        code: 'TMT'
+        code: 'TMT',
     ),
     'TND' => new SymbolData(
         description: 'Tunisian Dinar',
-        code: 'TND'
+        code: 'TND',
     ),
     'TOP' => new SymbolData(
         description: "Tongan Pa'anga",
-        code: 'TOP'
+        code: 'TOP',
     ),
     'TRY' => new SymbolData(
         description: 'Turkish Lira',
-        code: 'TRY'
+        code: 'TRY',
     ),
     'TTD' => new SymbolData(
         description: 'Trinidad and Tobago Dollar',
-        code: 'TTD'
+        code: 'TTD',
     ),
     'TWD' => new SymbolData(
         description: 'New Taiwan Dollar',
-        code: 'TWD'
+        code: 'TWD',
     ),
     'TZS' => new SymbolData(
         description: 'Tanzanian Shilling',
-        code: 'TZS'
+        code: 'TZS',
     ),
     'UAH' => new SymbolData(
         description: 'Ukrainian Hryvnia',
-        code: 'UAH'
+        code: 'UAH',
     ),
     'UGX' => new SymbolData(
         description: 'Ugandan Shilling',
-        code: 'UGX'
+        code: 'UGX',
     ),
     'USD' => new SymbolData(
         description: 'United States Dollar',
-        code: 'USD'
+        code: 'USD',
     ),
     'UYU' => new SymbolData(
         description: 'Uruguayan Peso',
-        code: 'UYU'
+        code: 'UYU',
     ),
     'UZS' => new SymbolData(
         description: 'Uzbekistan Som',
-        code: 'UZS'
+        code: 'UZS',
     ),
     'VEF' => new SymbolData(
         description: 'Venezuelan Bolívar Fuerte (Old)',
-        code: 'VEF'
+        code: 'VEF',
     ),
     'VES' => new SymbolData(
         description: 'Venezuelan Bolívar Soberano',
-        code: 'VES'
+        code: 'VES',
     ),
     'VND' => new SymbolData(
         description: 'Vietnamese Dong',
-        code: 'VND'
+        code: 'VND',
     ),
     'VUV' => new SymbolData(
         description: 'Vanuatu Vatu',
-        code: 'VUV'
+        code: 'VUV',
     ),
     'WST' => new SymbolData(
         description: 'Samoan Tala',
-        code: 'WST'
+        code: 'WST',
     ),
     'XAF' => new SymbolData(
         description: 'CFA Franc BEAC',
-        code: 'XAF'
+        code: 'XAF',
     ),
     'XAG' => new SymbolData(
         description: 'Silver Ounce',
-        code: 'XAG'
+        code: 'XAG',
     ),
     'XAU' => new SymbolData(
         description: 'Gold Ounce',
-        code: 'XAU'
+        code: 'XAU',
     ),
     'XCD' => new SymbolData(
         description: 'East Caribbean Dollar',
-        code: 'XCD'
+        code: 'XCD',
     ),
     'XDR' => new SymbolData(
         description: 'Special Drawing Rights',
-        code: 'XDR'
+        code: 'XDR',
     ),
     'XOF' => new SymbolData(
         description: 'CFA Franc BCEAO',
-        code: 'XOF'
+        code: 'XOF',
     ),
     'XPD' => new SymbolData(
         description: 'Palladium Ounce',
-        code: 'XPD'
+        code: 'XPD',
     ),
     'XPF' => new SymbolData(
         description: 'CFP Franc',
-        code: 'XPF'
+        code: 'XPF',
     ),
     'XPT' => new SymbolData(
         description: 'Platinum Ounce',
-        code: 'XPT'
+        code: 'XPT',
     ),
     'YER' => new SymbolData(
         description: 'Yemeni Rial',
-        code: 'YER'
+        code: 'YER',
     ),
     'ZAR' => new SymbolData(
         description: 'South African Rand',
-        code: 'ZAR'
+        code: 'ZAR',
     ),
     'ZMW' => new SymbolData(
         description: 'Zambian Kwacha',
-        code: 'ZMW'
+        code: 'ZMW',
     ),
     'ZWL' => new SymbolData(
         description: 'Zimbabwean Dollar',
-        code: 'ZWL'
+        code: 'ZWL',
     ),
 ];
