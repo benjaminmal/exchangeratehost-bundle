@@ -32,7 +32,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->latestRatesPool->get(
             $this->createCacheName('latest_rates', ['options' => $options]),
-            fn (): iterable => $this->decoratedClient->getLatestRates($options)
+            fn (): iterable => $this->decoratedClient->getLatestRates($options),
         );
     }
 
@@ -40,7 +40,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->convertCurrencyPool->get(
             $this->createCacheName('convert_currency', ['fromCurrency' => $fromCurrency, 'toCurrency' => $toCurrency, 'amount' => $amount, 'options' => $options]),
-            fn (): int|float => $this->decoratedClient->convertCurrency($fromCurrency, $toCurrency, $amount, $options)
+            fn (): int|float => $this->decoratedClient->convertCurrency($fromCurrency, $toCurrency, $amount, $options),
         );
     }
 
@@ -48,7 +48,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->historicalRatesPool->get(
             $this->createCacheName('historical_rates', ['date' => $date, 'options' => $options]),
-            fn (): iterable => $this->decoratedClient->getHistoricalRates($date, $options)
+            fn (): iterable => $this->decoratedClient->getHistoricalRates($date, $options),
         );
     }
 
@@ -56,7 +56,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->timeseriesRatesPool->get(
             $this->createCacheName('timeseries_rates', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]),
-            fn (): iterable => $this->decoratedClient->getTimeSeriesRates($startDate, $endDate, $options)
+            fn (): iterable => $this->decoratedClient->getTimeSeriesRates($startDate, $endDate, $options),
         );
     }
 
@@ -64,7 +64,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->fluctuationDataPool->get(
             $this->createCacheName('fluctuation_data', ['startDate' => $startDate, 'endDate' => $endDate, 'options' => $options]),
-            fn (): iterable => $this->decoratedClient->getFluctuationData($startDate, $endDate, $options)
+            fn (): iterable => $this->decoratedClient->getFluctuationData($startDate, $endDate, $options),
         );
     }
 
@@ -72,7 +72,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->supportedCurrenciesPool->get(
             $this->createCacheName('supported_currencies', ['options' => $options]),
-            fn (): iterable => $this->decoratedClient->getSupportedCurrencies($options)
+            fn (): iterable => $this->decoratedClient->getSupportedCurrencies($options),
         );
     }
 
@@ -80,7 +80,7 @@ final class CacheableExchangeRateHostClient implements ExchangeRateHostClientInt
     {
         return $this->euVatRatesPool->get(
             $this->createCacheName('eu_vat_rates', ['options' => $options]),
-            fn (): iterable => $this->decoratedClient->getEuVatRates($options)
+            fn (): iterable => $this->decoratedClient->getEuVatRates($options),
         );
     }
 

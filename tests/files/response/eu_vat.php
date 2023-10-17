@@ -15,7 +15,7 @@ return [
         superReducedRates: [],
         parkingRates: [
             13,
-        ]
+        ],
     ),
     'BE' => new VatRates(
         countryName: 'Belgium',
@@ -27,7 +27,7 @@ return [
         superReducedRates: [],
         parkingRates: [
             12,
-        ]
+        ],
     ),
     'BG' => new VatRates(
         countryName: 'Bulgaria',
@@ -158,7 +158,7 @@ return [
         ],
         parkingRates: [
             13.5,
-        ]
+        ],
     ),
     'IT' => new VatRates(
         countryName: 'Italy',
@@ -193,7 +193,7 @@ return [
         ],
         parkingRates: [
             14,
-        ]
+        ],
     ),
     'LV' => new VatRates(
         countryName: 'Latvia',
@@ -244,7 +244,7 @@ return [
         superReducedRates: [],
         parkingRates: [
             13,
-        ]
+        ],
     ),
     'RO' => new VatRates(
         countryName: 'Romania',
